@@ -1,0 +1,38 @@
+.new-birthday-wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 45%;
+    width: 75%;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8%;
+    border-radius: 10px;
+}
+.modal-form{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    height: 45%;
+    width: 75%;
+    background-color: white;
+    float: center;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+.input-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    align-content: center;
+}
+.birthday-info{
+    height: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    align-items: center;
+}

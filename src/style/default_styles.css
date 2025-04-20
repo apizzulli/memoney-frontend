@@ -1,0 +1,28 @@
+.verticalFlex{
+    width:100%;
+    display: flex;
+    flex-direction:column;
+    column-gap: 5;
+    justify-content:center;
+    align-items: center;
+    row-gap: 5px;
+}
+.horizontalFlex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button-dark{
+    color:'white'
+}
+.button-light {
+    color:'black'
+}
+#card-light{
+    background-color:rgb(179, 64, 64);
+    box-shadow: 10px 10px 5px rgb(0, 0, 0);
+
+}
+#card-dark{
+    background-color:rgba(255, 255, 255, 0.2);
+}

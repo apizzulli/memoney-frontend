@@ -1,0 +1,20 @@
+.navbar{
+    height: 5%;
+    width: 100vw;
+    border-bottom-width: .05px;
+    border-bottom-color: white;
+    border-bottom-style: solid;
+}
+.button-container{
+    display: flex;
+    column-gap: 0.3%;
+    height: 90%;
+    align-items: center;
+    margin-left: 0.5%;
+    color: white;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
