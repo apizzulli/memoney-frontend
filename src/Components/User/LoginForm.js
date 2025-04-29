@@ -46,19 +46,20 @@ export default function LoginForm() {
             setServerError(true);
             return;
         }
-        setUserId(response.userId);
+        let user = response.user;
+        setUserId(user.id);
         setLoggedIn(true);
-        localStorage.setItem("userId",response.userId);
+        localStorage.setItem("userId",user.id);
         localStorage.setItem("jwt",response.token.value);
-        if(response.budgets.length == 0){
+        if(user.budgets.length == 0){
             //localStorage.setItem("budgets", response.json());
             navigate("/budgets/create");
         }else{
-            setBudgets(response.budgets);
-            response.budgets.forEach((budget)=>{
+            setBudgets(user.budgets);
+            user.budgets.forEach((budget)=>{
                 getRemaining(budget);
             })
-            localStorage.setItem("budgets",JSON.stringify(response.budgets));
+            localStorage.setItem("budgets",JSON.stringify(user.budgets));
             navigate("/budgets/view");
         }
     } 

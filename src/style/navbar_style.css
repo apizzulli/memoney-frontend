@@ -5,6 +5,9 @@
     border-bottom-color: white;
     border-bottom-style: solid;
 }
+.navBarMenu{
+    font-family:'Avenir Next Condensed';
+}
 .button-container{
     display: flex;
     column-gap: 0.3%;
@@ -13,7 +16,9 @@
     margin-left: 0.5%;
     color: white;
 }
-
+.menuItem{
+    font-family: 'Avenir Next Condensed';
+}
 a{
     color: white;
     text-decoration: none;

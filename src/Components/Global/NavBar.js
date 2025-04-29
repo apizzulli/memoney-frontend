@@ -12,6 +12,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 export default function NavBar(){
     const navigate = useNavigate();
     const [ anchorEl, setAnchorEl ] = useState(null);
+    const [ anchorEl2, setAnchorEl2 ] = useState(null);
+
     const [ profileAnchor, setProfileAnchor ] = useState(null);
 
     const { lightMode, setLightMode } = useContext(BudgetContext);
@@ -21,8 +23,16 @@ export default function NavBar(){
         setAnchorEl(event.currentTarget);
     }
 
+    const openTransMenu = (event) => {
+        setAnchorEl2(event.currentTarget);
+    }
+
     const closeMenu = (event) => {
         setAnchorEl(null);
+    }
+
+    const closeTransMenu = (event) => {
+        setAnchorEl2(null);
     }
 
     function openProfile(event) {
@@ -35,8 +45,10 @@ export default function NavBar(){
 
     window.addEventListener('mouseup', function(e) {
         var x = document.querySelector('#navBarMenu');
-        if (e.target != document.querySelector(".menuItem") && Boolean(anchorEl)) {
+        if (e.target != document.querySelector(".menuItem") && (Boolean(anchorEl) || Boolean(anchorEl2) || Boolean(profileAnchor))) {
             closeMenu();
+            closeTransMenu();
+            setProfileAnchor(null);
         }
     });
 
@@ -63,14 +75,18 @@ export default function NavBar(){
     }
     return(
             <div  className="horizontalFlex" style={{display:'flex',width:'100%', height:'5%', borderBottom: '.02rem solid', borderBottomColor:'white',justifyContent:'space-between'}}>
-                <div className="horizontalFlex" style={{visibility: loggedIn ? 'visible' : 'hidden', marginLeft:'.25%'}}>
+                <div className="horizontalFlex" style={{visibility: loggedIn ? 'visible' : 'hidden', marginLeft:'.5%'}}>
+                    <h3 style={{marginRight:'1%'}}>MEMONEY™</h3>
                     <Button onClick={()=>{navigate("/")}} style={{fontFamily:'inherit',color:'inherit'}} variant="text">Home</Button>
-                    <Button onClick={()=>{navigate("/calendar-view")}} style={{fontFamily:'inherit',color:'inherit'}} variant="text" href="/calendar-view"> Calendar</Button>
                     <Button onClick={openMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Budgets</Button>
                     <Menu id="navBarMenu" anchorEl={anchorEl} open={Boolean(anchorEl)}  anchorOrigin={{vertical:'bottom'}}>   
-                        <MenuItem className="menuItem" onClick={closeMenu} ><Link style={{color:'black'}} to="/budgets/view">View Existing Budgets</Link></MenuItem>
+                        <MenuItem className="menuItem" onClick={closeMenu} ><Link style={{color:'black',fontFamily: 'Avenir Next Condensed'}} to="/budgets/view">View Existing Budgets</Link></MenuItem>
                         <MenuItem className="menuItem" onClick={closeMenu}><Link style={{color:'black'}} to="/budgets/create">Create New Budget</Link></MenuItem>
-                        <MenuItem  className="menuItem" onClick={closeMenu}><Link style={{color:'black'}} to="/transactions">Transactions</Link></MenuItem>
+                    </Menu>
+                    <Button onClick={openTransMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Transactions</Button>
+                    <Menu id="navBarMenu" anchorEl={anchorEl2} open={Boolean(anchorEl2)}  anchorOrigin={{vertical:'bottom'}}>   
+                        <MenuItem className="menuItem" onClick={closeTransMenu} ><Link style={{color:'black'}} to="/transactions">View Existing Transactions</Link></MenuItem>
+                        <MenuItem className="menuItem" onClick={closeTransMenu}><Link style={{color:'black'}} to="/transactions/add">Create New Transaction</Link></MenuItem>
                     </Menu>
                 </div>
                 <div style={{display:'flex', flexDirection:'row',fontSize:'12pt',marginRight:'1.5%',width:'15%', justifyContent:'flex-end'}}>

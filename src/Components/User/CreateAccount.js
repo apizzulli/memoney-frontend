@@ -13,6 +13,11 @@ export default function CreateAccount() {
             password: event.currentTarget.password.value
         };
         const response = await newUser(userDTO);
+        if(!response){
+            
+        }
+        localStorage.setItem("jwt",response.token.value);
+        localStorage.setItem("userId",response.user.id);
         navigate("/budgets/create");
         // .then(response => response.json())
         // .then(data => console.log(data))

@@ -1,5 +1,5 @@
 export async function newUser(userDTO) {
-    await fetch('http://localhost:8080/createAccount',
+    return fetch('http://localhost:8080/user/createAccount',
         {
             headers: {
             "Accept":"application/json",
@@ -8,7 +8,7 @@ export async function newUser(userDTO) {
             method: "POST",
             body: JSON.stringify(userDTO)
         }).then((response)=> {
-            if(response.status == "202"){
+            if(response.status == "201"){
                 return response.json();
             }
             else
@@ -87,7 +87,7 @@ export async function editBudget(editedBudg, budgId) {
 export async function createTransaction (budgetId, transaction) {
     let token = localStorage.getItem("jwt");
     console.log("adding transaction");
-    return fetch(`http://localhost:8080/budgets/transactions/add/${budgetId}`,
+    return fetch(`http://localhost:8080/transactions/add/${budgetId}`,
     {
         headers: {
             "Access-Control-Allow-Origin" : "*",

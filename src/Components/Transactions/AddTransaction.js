@@ -8,6 +8,7 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { createTransaction } from '../../Controllers/Requests';
 import { useState, useContext } from 'react';
 import { BudgetContext } from '../../App.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function Transactions() {
 
@@ -19,7 +20,7 @@ export default function Transactions() {
     const { userId, setUserId } = useContext(BudgetContext);
 
     const inputs = ["Amount", "Description", "Date"];
-
+    const navigate = useNavigate();
     function Transaction(category,amount,date, description) {
         this.category = category;
         this.amount = amount;
@@ -32,8 +33,8 @@ export default function Transactions() {
         let newTrans = new Transaction(selectedCat, document.getElementById("amountInput").value, document.getElementById("dateInput").value, document.getElementById("descInput").value);
         let budgId = JSON.parse(localStorage.getItem("selectedBudget")).id;
         let newBudg = await createTransaction((JSON.parse(localStorage.getItem("selectedBudget"))).id, newTrans);
-        console.log("newbug");
-        //localStorage.setItem("selectedBudget",newBudg);
+        localStorage.setItem("selectedBudget",newBudg);
+        navigate("/budgets/view");
     }
 
     const handleMenuOpen =(event)=>{
