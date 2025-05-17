@@ -26,3 +26,13 @@
 #card-dark{
     background-color:rgba(255, 255, 255, 0.2);
 }
+.tooltip .tooltiptext {
+    opacity: 0;
+}
+  
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    transition: opacity 1s;
+    opacity: 1;
+    margin-top: 5%;
+}  

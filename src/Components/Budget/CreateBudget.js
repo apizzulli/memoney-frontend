@@ -12,7 +12,16 @@ import { newBudget } from '../../Controllers/Requests.js';
 import { BudgetContext } from '../../App.js';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import { pickIcon } from '../Global/Card.js';
+import Card from '@mui/material/Card';
 
+const CATEGORIES=[
+    "Groceries",
+    "Internet",
+    "Phone",
+    "Savings",
+    "Discretionary"
+]
 function BudgetObj(name,total,categories) {
     this.name = name;
     this.total = total;
@@ -61,17 +70,24 @@ export default function CreateBudget(){
     return(
         <div className="verticalFlex" style={{width: '100vw'}}>
             <h1>New Budget</h1>
-            <div style={{display:'grid'}}>
-                <div className='horizontalFlex' style={{gap:'5%'}}>
+            <div className="verticalFlex" style={{width:'60%', height:'60%'}}>
+                <div className='horizontalFlex' style={{gap:'5%',height:'15%'}}>
                     <Input id="nameInput" name="budgetName" sx={{width: 200}} placeholder="Budget Name" required></Input>
                     <Input id="totalInput" name="total" sx={{width: 200}} placeholder="Total" required></Input>
                 </div>
                 <h2 style={{marginTop:'10%'}}>Categories</h2>
-                {savedCategories.map((cat) => <div>{cat.name + ": $" + cat.amount}</div>)}
-                <CategoryForm savedCategories={savedCategories} saveCategories={saveCategories}></CategoryForm>
-                <div style={{hover:'cursor',marginTop:'10%',fontSize:'25pt', gap:'3%'}} className='horizontalFlex'>
-                    <div >Save</div> 
-                    <SaveAltIcon onClick={createBudget} style={{hover:'cursor',fontSize:'25pt'}}></SaveAltIcon>
+                {
+                    <div className='horizontalFlex' style={{columnGap:'3%', height:'45%',width:'100%'}}>
+                    {CATEGORIES.map((category,i)=> 
+                        <div style={{width:'10%', height:'15%'}}>
+                            {pickIcon(category)}
+                        </div>
+                    )}
+                    </div>               
+                }
+                <div style={{backgroundColor:'rgb(39, 48, 61)',outlineWidth:'.5px',outlineStyle:'solid',outlineColor:'white',hover:'cursor',marginTop:'10%',fontSize:'25pt', gap:'3%', width:'50%'}} className='horizontalFlex'>
+                    <div style={{fontSize:'18pt'}} >Save</div> 
+                    <SaveAltIcon onClick={createBudget} style={{hover:'cursor',fontSize:'18pt'}}></SaveAltIcon>
                 </div>
             </div>
             <h3 style={{visibility: serverFail ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder', fontSize:'xxl', marginTop:'4%'}}>Server failure, please try again</h3>

@@ -26,7 +26,7 @@ export default function HomeScreen() {
                 :
                 (<div className='verticalFlex' style={{marginTop:'2%', height:'100%'}}>
                     <Button onClick={()=>{navigate("/budgets/view")}} size='lg' variant='outlined' style={{fontFamily:'inherit',color:'inherit', marginBottom:'1%'}}>View Budgets</Button>
-                    <Button onClick={()=>{navigate("/budgets/creates")}} size='lg' variant='outlined'style={{fontFamily:'inherit',color:'inherit', marginBottom:'1%'}}>Create New Budget</Button>
+                    <Button onClick={()=>{navigate("/budgets/create")}} size='lg' variant='outlined'style={{fontFamily:'inherit',color:'inherit', marginBottom:'1%'}}>Create New Budget</Button>
                     <Button onClick={()=>{navigate("/transactions/add")}} size='lg' variant='outlined'style={{fontFamily:'inherit',color:'inherit'}}>Log a transaction</Button>
                 </div>)
             }
