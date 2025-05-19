@@ -36,3 +36,9 @@
     opacity: 1;
     margin-top: 5%;
 }  
+.card:hover{
+    cursor: pointer;
+}
+#card:hover{
+    cursor:pointer;
+}

@@ -1,6 +1,7 @@
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import CategoryForm from '../Global/CategoryForm';
+import CatCard from '../Global/CatCard';
 import Menu, { MenuPaper } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import '../../style/budget_style.css';
@@ -12,8 +13,9 @@ import { newBudget } from '../../Controllers/Requests.js';
 import { BudgetContext } from '../../App.js';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { pickIcon } from '../Global/Card.js';
+import { pickIcon } from '../Global/CatCard.js';
 import Card from '@mui/material/Card';
+
 
 const CATEGORIES=[
     "Groceries",
@@ -35,6 +37,8 @@ export default function CreateBudget(){
     const navigate = useNavigate();
     const [ savedCategories, saveCategories ] = useState([]);
     const [ serverFail, setServerFail ] = useState(false);
+    const [ amountInput, setAmountInput ] = useState(false);
+
     const { budgets, setBudgets } = useContext(BudgetContext);
     const { userId, setUserId } = useContext(BudgetContext);
 
@@ -76,16 +80,18 @@ export default function CreateBudget(){
                     <Input id="totalInput" name="total" sx={{width: 200}} placeholder="Total" required></Input>
                 </div>
                 <h2 style={{marginTop:'10%'}}>Categories</h2>
-                {
-                    <div className='horizontalFlex' style={{columnGap:'3%', height:'45%',width:'100%'}}>
-                    {CATEGORIES.map((category,i)=> 
-                        <div style={{width:'10%', height:'15%'}}>
-                            {pickIcon(category)}
-                        </div>
-                    )}
-                    </div>               
-                }
-                <div style={{backgroundColor:'rgb(39, 48, 61)',outlineWidth:'.5px',outlineStyle:'solid',outlineColor:'white',hover:'cursor',marginTop:'10%',fontSize:'25pt', gap:'3%', width:'50%'}} className='horizontalFlex'>
+                <div className='horizontalFlex' style={{columnGap:'3%', height:'45%',width:'100%'}}>
+                    {
+                        /*/
+                            {Object.keys(CATEGORIES).map((name,i)=><MenuItem id="menuItem" onClick={()=>menuClick(CATEGORIES[name])}>
+                                {CATEGORIES[name]}</MenuItem>
+                        )}*/
+                        CATEGORIES.map((category,i)=> 
+                            <CatCard key={i} category={category}></CatCard>
+                        )
+                    }
+                </div>               
+                <div id="card" style={{borderRadius: '10px',backgroundColor:'rgb(39, 48, 61)',outlineWidth:'.5px',outlineStyle:'solid',outlineColor:'white',hover:'cursor',marginTop:'10%',fontSize:'25pt', gap:'3%', height:'15%',width:'10%'}} className='horizontalFlex'>
                     <div style={{fontSize:'18pt'}} >Save</div> 
                     <SaveAltIcon onClick={createBudget} style={{hover:'cursor',fontSize:'18pt'}}></SaveAltIcon>
                 </div>

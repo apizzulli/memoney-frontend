@@ -4,7 +4,7 @@ import Button from '@mui/joy/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Shop } from '@mui/icons-material';
 import { BudgetContext } from '../../App.js';
-import { spendCard, pickIcon } from '../Global/Card.js';
+// import { spendCard, pickIcon } from '../Global/CatCard.js';
 const USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -47,18 +47,18 @@ export default function ViewTransactions() {
                 transactions != undefined && transactions.length > 0? 
                 <div className='verticalFlex' style={{height:'100%', width:'70%'}}>
                         <div className='horizontalFlex' style={{columnGap:'3%',width:'100%', height:'25%'}}>
-                        {
+                        {/* {
                             remainingVals.map((val, i)=>
                                 spendCard(val,i)
                             )
-                        }
+                        } */}
                     </div>
                     <h2>Transactions:</h2>  
                     <div style={{height:'75%',width:'45%'}}>
                         {transactions.map((trans) => 
                             <div style={{display:'flex',flexDirection:'row',alignContent:'center',alignItems:'center',justifyContent:'center',backgroundColor:'rgb(39, 48, 61)',marginTop:'2%',height:'8%',marginBottom:'5%'}}>
                                 <div style={{marginRight:'2%'}}>{dateStr(trans.date)}</div>
-                                <div style={{marginRight:'2%'}}>{pickIcon(trans.category)}</div>
+                                {/* <div style={{marginRight:'2%'}}>{pickIcon(trans.category)}</div> */}
                                 <div >{" -" + USDollar.format(trans.amount)}</div>
                             </div>
                         )}
