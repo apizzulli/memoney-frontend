@@ -12,10 +12,10 @@ export const percent = new Intl.NumberFormat('default', {
     style: 'percent'
 }); 
 
-export default function CatCard({category}) {
+export default function CatCard({category, initialAmount}) {
     const [ amountInput, setAmountInput ] = useState(false);
     const [ amountSet, setAmountSet ] = useState(false);
-    const [ amount, setAmount ] = useState(0);
+    const [ amount, setAmount ] = useState(initialAmount);
     let icon = null;
     switch(category){
         case "Groceries":
@@ -42,22 +42,24 @@ export default function CatCard({category}) {
     //     amountText=<div style={{fontSize:'8pt',marginTop:'12%',color:`${colorPicker(amount)}`, fontWeight:'bolder',height:'50%'}}>{percent.format(amount)} spent</div>;
     // }
     function set(){
-        setAmount(document.getElementById("categoryInput").value);
-        setAmountSet(true);
+        let inputVal = document.getElementById(category+"Input").value;
+        if(inputVal != ""){
+            setAmount(inputVal);
+        }else{
+            setAmount(0);
+        }
         setAmountInput(false);
     }
     return(
-        <div  className="tooltip" style={{width:'10%'}}>
+        <div id={category} className="tooltip" style={{width:'10%'}}>
             <Card onClick={()=>setAmountInput(true)} variant="outlined" style={{color:'white',alignItems:'center',flexDirection:'column',display:'flex',marginBottom:'3%',backgroundColor:'rgb(39, 48, 61)',outlineWidth:'2px',outlineStyle:'solid',outlineColor:'rgba(255, 255, 255, 0.2)',width:'100%', height:'100%'}}>
                 {icon}
                 ${amount}
             </Card>
             <span className='tooltiptext'>{category}</span>
-            <div style={{columnGap:'2%',display:'flex',visibility: amountInput ? 'visible' : 'hidden',alignItems:'center'}}>
-                <Input id="categoryInput" placeholder="Amount"></Input>
+            <div style={{columnGap:'4%',display:'flex',visibility: amountInput ? 'visible' : 'hidden',alignItems:'center'}}>
+                <Input id={category+"Input"} placeholder="Amount"></Input>
                 <CheckCircleIcon onClick={set}></CheckCircleIcon>
-            </div>
-            <div style={{display: amountSet ? 'block' : 'none'}}>
             </div>
             {/* {amountText} */}
         </div>

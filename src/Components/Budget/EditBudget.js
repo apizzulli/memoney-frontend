@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useContext, useState, useEffect } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { editBudget } from '../../Controllers/Requests'; 
+import CatCard from '../Global/CatCard';
 
 function Category(name, amount){
     this.name = name;
@@ -18,7 +19,13 @@ function BudgetObj(id, name,total,categories) {
     this.total = total;
     this.categories = categories;
 }
-
+const CATEGORIES=[
+    "Groceries",
+    "Internet",
+    "Phone",
+    "Savings",
+    "Discretionary"
+]
 export default function EditBudget(){
 
     const navigate = useNavigate();
@@ -206,7 +213,17 @@ export default function EditBudget(){
         <div  className='verticalFlex' style={{width: '100%'}}>
             {nameDisplay}
             {totalDisplay}
-            {categoriesDisplay}
+            <div className='horizontalFlex' style={{columnGap:'3%', height:'45%',width:'100%'}}>
+                    {
+                        /*/
+                            {Object.keys(CATEGORIES).map((name,i)=><MenuItem id="menuItem" onClick={()=>menuClick(CATEGORIES[name])}>
+                                {CATEGORIES[name]}</MenuItem>
+                        )}*/
+                        Object.keys(currentCategories).map((name,i)=> 
+                            <CatCard initialAmount={currentCategories[name]} key={i} category={name}></CatCard>
+                        )
+                    }
+                </div> 
             <Button onClick={saveBudget} variant = "outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:"6%"}}>Save Budget</Button>
             <h3 style={{visibility: serverError ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder', fontSize:'xxl', marginTop:'4%'}}>Server error - budget not saved</h3>
             <h3 style={{visibility: noChanges ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder', fontSize:'xxl', marginTop:'4%'}}>Nothing to save - please make changes first!</h3>

@@ -18,3 +18,6 @@
     align-content: center;
     justify-content: center;
 }
+.card:hover{
+    background-color: rgb(39, 48, 61);
+}

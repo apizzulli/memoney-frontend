@@ -45,11 +45,20 @@ export default function CreateBudget(){
     async function createBudget (event) {
         let currentBudgets = JSON.parse(localStorage.getItem("budgets"));
         event.preventDefault();
-        let object = savedCategories.reduce((obj, item) => Object.assign(obj, { [item.name]: item.amount }), {});
+        let categories = {};
+        CATEGORIES.forEach((category)=>{
+            let val = document.getElementById(category+"Input").value;
+            if(val == "")
+                val = 0;
+            categories[category]= parseFloat(val);
+            console.log(val);
+            // categories.push(savedCategories[i].name);
+        })
+        // let object = savedCategories.reduce((obj, item) => Object.assign(obj, { [item.name]: item.amount }), {});
         const newBudg = {
             name: document.getElementById("nameInput").value, 
             total: document.getElementById("totalInput").value*1,
-            categories: object
+            categories: categories
         };
         let userId = localStorage.getItem("userId");
         const created = await newBudget(userId, newBudg, localStorage.getItem("jwt"));
@@ -79,7 +88,7 @@ export default function CreateBudget(){
                     <Input id="nameInput" name="budgetName" sx={{width: 200}} placeholder="Budget Name" required></Input>
                     <Input id="totalInput" name="total" sx={{width: 200}} placeholder="Total" required></Input>
                 </div>
-                <h2 style={{marginTop:'10%'}}>Categories</h2>
+                <h2 style={{marginTop:'4%'}}>Categories</h2>
                 <div className='horizontalFlex' style={{columnGap:'3%', height:'45%',width:'100%'}}>
                     {
                         /*/
@@ -87,16 +96,16 @@ export default function CreateBudget(){
                                 {CATEGORIES[name]}</MenuItem>
                         )}*/
                         CATEGORIES.map((category,i)=> 
-                            <CatCard key={i} category={category}></CatCard>
+                            <CatCard initialAmount={0} key={i} category={category}></CatCard>
                         )
                     }
                 </div>               
-                <div id="card" style={{borderRadius: '10px',backgroundColor:'rgb(39, 48, 61)',outlineWidth:'.5px',outlineStyle:'solid',outlineColor:'white',hover:'cursor',marginTop:'10%',fontSize:'25pt', gap:'3%', height:'15%',width:'10%'}} className='horizontalFlex'>
-                    <div style={{fontSize:'18pt'}} >Save</div> 
-                    <SaveAltIcon onClick={createBudget} style={{hover:'cursor',fontSize:'18pt'}}></SaveAltIcon>
+                <div id="card" onClick={createBudget} style={{borderRadius: '10px',backgroundColor:'rgb(39, 48, 61)',outlineWidth:'.5px',outlineStyle:'solid',outlineColor:'white',hover:'cursor',marginTop:'2%',paddingTop:'.5%',paddingBottom:'.5%',fontSize:'25pt', gap:'3%', height:'15%',width:'10%'}} className='horizontalFlex'>
+                    <div style={{fontSize:'16pt'}} >Save</div> 
+                    <SaveAltIcon  style={{hover:'cursor',fontSize:'16pt'}}></SaveAltIcon>
                 </div>
             </div>
-            <h3 style={{visibility: serverFail ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder', fontSize:'xxl', marginTop:'4%'}}>Server failure, please try again</h3>
+            <h3 style={{visibility: serverFail ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder', fontSize:'xxl', marginTop:'2%'}}>Server error, please try again</h3>
         </div>
     );
 }

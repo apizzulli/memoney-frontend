@@ -38,6 +38,7 @@
 }  
 .card:hover{
     cursor: pointer;
+    background-color: rgb(179, 64, 64)  !important;
 }
 #card:hover{
     cursor:pointer;
