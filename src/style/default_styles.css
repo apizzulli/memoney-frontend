@@ -31,6 +31,7 @@
 }
   
 .tooltip:hover .tooltiptext {
+    cursor: pointer;
     visibility: visible;
     transition: opacity 1s;
     opacity: 1;
@@ -57,4 +58,11 @@
     outline: none;
     color: inherit;
     font: inherit;
+}
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+input[type=number] {
+    -moz-appearance: textfield;
 }

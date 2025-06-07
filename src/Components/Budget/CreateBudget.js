@@ -41,7 +41,7 @@ export default function CreateBudget(){
 
     const { budgets, setBudgets } = useContext(BudgetContext);
     const { userId, setUserId } = useContext(BudgetContext);
-
+    
     async function createBudget (event) {
         let currentBudgets = JSON.parse(localStorage.getItem("budgets"));
         event.preventDefault();
@@ -79,7 +79,9 @@ export default function CreateBudget(){
         .then(response => response.json())
         .then(data => console.log(data));
     }
-
+    function h(event){
+        console.log('hi');
+    }
     return(
         <div className="verticalFlex" style={{width: '100vw'}}>
             <h1>New Budget</h1>

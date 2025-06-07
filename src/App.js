@@ -12,16 +12,33 @@ import ViewBudgets from './Components/Budget/ViewBudgets.js';
 import EditBudget from './Components/Budget/EditBudget.js';
 import BudgetDetails from './Components/Budget/BudgetDetails.js';
 import {Routes, Route} from 'react-router-dom';
-import { createContext, useState } from 'react';
-
+import { createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 export const BudgetContext = createContext();      
 
 function App() {
-
+  const navigate = useNavigate();
   const [ budgets, setBudgets ] = useState([]);
   const [ userId, setUserId ] = useState();
   const [ loggedIn, setLoggedIn ] = useState(localStorage.getItem("userId"));
   const [ lightMode, setLightMode ] = useState(false);
+
+  useEffect(() => {
+    if(!localStorage.getItem("token")){
+      localStorage.clear();
+      navigate("/login", {state: {message: "Session expired, please log in again."}});
+      return;
+    }
+    let token = jwtDecode(localStorage.getItem("token"));
+    let exp = token.exp.toString();
+    let now = Date.now();
+    if(token && token.exp < Date.now() / 1000){
+       localStorage.clear();
+        navigate("/login", {state: {message: "Session expired, please log in again."}});
+        return;
+    }
+  }, []); 
 
   return (
         <BudgetContext.Provider value={{loggedIn, setLoggedIn, lightMode, setLightMode, budgets, setBudgets, userId, setUserId}}>

@@ -4,13 +4,11 @@ import Button from '@mui/joy/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Shop } from '@mui/icons-material';
 import { BudgetContext } from '../../App.js';
-// import { spendCard, pickIcon } from '../Global/CatCard.js';
+
 const USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
 });
-
-
 
 export default function ViewTransactions() {
 
@@ -23,11 +21,11 @@ export default function ViewTransactions() {
     const [ remaining, setRemaining ] = useState(JSON.parse(localStorage.getItem("selectedBudget")).remaining);
     const [ total, setTotal ] = useState(JSON.parse(localStorage.getItem("selectedBudget")).total);
 
-    
     const view=()=>{
         let j = JSON.parse(localStorage.getItem("selectedBudget")).remaining;
         console.log("hi");
     }
+
     const dateStr = (date) => { 
         let newDate = new Date(date);
         return newDate.toLocaleDateString("en-US");
@@ -37,9 +35,13 @@ export default function ViewTransactions() {
         <div onClick={view} className='verticalFlex' style={{width:'100%', height:'100%'}}>
             <h1 >{budgetName}</h1>
             <div style={{height:'30%',width:'40%'}}className='verticalFlex'>
-                <div className="horizontalFlex" style={{height:'75%',width:'100%'}}>
-                    <div style={{backgroundColor:'red',width:`${total-remaining}%`,height:'5%'}}></div>
-                    <div style={{backgroundColor:'green',width:`${remaining}%`,height:'5%'}}></div>
+                <div className="horizontalFlex" style={{alignItems:'center', justifyContent:'center',height:'75%',width:'100%'}}>
+                    <div className="tooltip" style={{height:'30%',display:'flex',flexDirection:'column',backgroundColor:'red',width:`${total-remaining}%`}}>
+                        <span style={{marginTop:'auto', marginBottom:'auto',height:'100%'}} className='tooltiptext'>{Math.round((total-remaining/total)*100)}% Spent</span>
+                    </div> 
+                    <div className='tooltip' style={{height:'30%',display:'flex',flexDirection:'column',backgroundColor:'green',width:`${remaining}%`}}>
+                        <span  className='tooltiptext'>{Math.round((remaining/total)*100)}% Spent</span>
+                    </div>
                 </div>
                 {USDollar.format(remaining)} Remaining
             </div>

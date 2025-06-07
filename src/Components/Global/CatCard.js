@@ -43,6 +43,11 @@ export default function CatCard({category, initialAmount}) {
     // if(amount){
     //     amountText=<div style={{fontSize:'8pt',marginTop:'12%',color:`${colorPicker(amount)}`, fontWeight:'bolder',height:'50%'}}>{percent.format(amount)} spent</div>;
     // }
+    const h =(event) => {
+        if (event.key === 'Enter') {
+            set(event);
+        }
+      }
     function set(event){
         event.stopPropagation();
         let inputVal = document.getElementById(category+"Input").value;
@@ -56,8 +61,8 @@ export default function CatCard({category, initialAmount}) {
     const inputs = () =>{
             return (
                 <div style={{height:'100%', columnGap:'0%',rowGap:'0%',flexWrap:'nowrap'}} className='horizontalFlex'>
-                    <input style={{width:'55%',marginLeft:"0%"}} className="input" id={category+"Input"} text="$" placeholder="Amount"></input>
-                    <CheckCircleIcon style={{width:'10%',height:'100%',marginLeft:"5%"}} onClick={set}></CheckCircleIcon>
+                    <input onKeyDown={h} style={{marginLeft:"5%",width:'55%',marginLeft:"0%"}} className="input" id={category+"Input"} type="number" placeholder="Amount"></input>
+                    <CheckCircleIcon fontSize="small" style={{paddingLeft:"5%"}} onClick={set}></CheckCircleIcon>
                 </div>
             );
     }
@@ -70,7 +75,7 @@ export default function CatCard({category, initialAmount}) {
                     inputs()
                     :
                     <div style={{width:'100%', height:'100%'}} >
-                        <span >${amount}</span>
+                        <span style={{marginTop:'5%'}} >${amount}</span>
                     </div>
                 }
             </Button>
