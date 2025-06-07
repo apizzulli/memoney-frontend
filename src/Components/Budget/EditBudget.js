@@ -147,13 +147,13 @@ export default function EditBudget(){
         setEditCategory(name);
     }
     const nameDisplay = 
-        <div className='horizontalFlex' style={{width:'20%'}} >
+        <div style={{width:'100%'}}>
             <div className='horizontalFlex' style={{width:'100%',justifyContent:'space-between'}}>
                 <h2 >Name:</h2>
                 {editName && !editTotal ? 
                     <div className='horizontalFlex'>
                         <Input id="nameInput" defaultValue={currentName} name="budgetName" sx={{width: 200}} placeholder="Budget Name" required></Input>
-                        <Button onClick={nameDone} variant="outlined" style={{fontFamily:'inherit',color:'inherit',marginLeft:'6pt'}}>Done</Button>
+                        <Button className="button" onClick={nameDone} variant="outlined" style={{fontFamily:'inherit',color:'inherit',marginLeft:'6pt'}}>Done</Button>
                     </div>
                     :
                     <div className='horizontalFlex'>
@@ -164,67 +164,36 @@ export default function EditBudget(){
             </div>
         </div>
     const totalDisplay = 
-        <div className='horizontalFlex' style={{width:'20%'}}>
-            <div className='horizontalFlex' style={{width:'100%',justifyContent:'space-between'}}>
-                <h2 >Total:</h2>
-                {
-                    editTotal && !editName  ?
-                    <div className='horizontalFlex'>
-                        <Input id="totalInput" defaultValue={currentTotal} name="budgetName" sx={{width: 100}} placeholder="Budget Total" required></Input>
-                        <Button onClick={totalDone} variant="outlined" style={{fontFamily:'inherit',color:'inherit',marginLeft:'6pt'}}>Done</Button>
+                <div style={{width:'100%'}}>
+                    <div className='horizontalFlex' style={{width:'100%',justifyContent:'space-between'}}>
+                        <h2 >Total:</h2>
+                        {
+                            editTotal && !editName  ?
+                            <div className='horizontalFlex'>
+                                <Input id="totalInput" defaultValue={currentTotal} name="budgetName" sx={{width: 100}} placeholder="Budget Total" required></Input>
+                                <Button className="button" onClick={totalDone} variant="outlined" style={{fontFamily:'inherit',color:'inherit',marginLeft:'6pt'}}>Done</Button>
+                            </div>
+                            :
+                            <div className='horizontalFlex'>
+                                <div style={{fontSize:'15pt'}}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentTotal)}</div>
+                                <ModeEditIcon onClick={()=>setEditTotal(true)} style={{display:'inline',fontSize:'18pt', marginLeft:'6pt',marginTop:'3pt'}}></ModeEditIcon>
+                            </div>
+                        }
                     </div>
-                    :
-                    <div className='horizontalFlex'>
-                        <div style={{fontSize:'15pt'}}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentTotal)}</div>
-                        <ModeEditIcon onClick={()=>setEditTotal(true)} style={{display:'inline',fontSize:'18pt', marginLeft:'6pt',marginTop:'3pt'}}></ModeEditIcon>
-                    </div>
-                }
-            </div>
-        </div>
-    const categoriesField = (name, i) => {
-        return (
-            <div id="categoryInputs">
-                <div id={"categoryInput"+i} key={name} className='horizontalFlex' style={{marginBottom:'2%'}}>
-                    <Input id={"name"+i} defaultValue={name} type="text" name="catAmount" sx={{width:100, height: 20}} required></Input>
-                    <Input id={"amount"+i} defaultValue={currentCategories[name]} type="text" name="catAmount" sx={{marginLeft: '6pt',width:100, height: 20}} required></Input>
-                    <DeleteIcon style={{marginLeft:'6pt'}}></DeleteIcon>
-                    <Button onClick={()=>{categoriesDone(name,i)}} variant="outlined" style={{fontFamily:'inherit',color:'inherit',marginLeft:'6pt'}}>Done</Button>
                 </div>
-            </div>);
-    }
-    const categoriesDisplay = 
-        <div className='horizontalFlex' style={{width:'20%'}}>
-            <div className='verticalFlex' style={{width:'100%', alignContent:'center', justifyContent:'center'}}>
-                <h2 style={{display:'inline'}}>Categories:</h2>
-                {Object.keys(currentCategories).map(
-                    (name, i) => 
-                        editCategory == name ? 
-                        categoriesField(name, i)
-                        : 
-                        <div id={"category"+i} className="horizontalFlex" key={name}>{name + ": $" + currentCategories[name]}
-                            <ModeEditIcon onClick={()=>{editCat(name)}} style={{marginLeft:'6pt',display:'inline',fontSize:'15pt'}}></ModeEditIcon>
-                        </div>
-                )}
-                <Button variant = "outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'2%'}}>New Category</Button>
-            </div>
-        </div>
     
     return(
-        <div  className='verticalFlex' style={{width: '100%'}}>
+        <div  className='verticalFlex' style={{marginLeft:'auto',marginRight:'auto',width: '20%', alignItems:'center',justifyContent:'center'}}>
             {nameDisplay}
             {totalDisplay}
-            <div className='horizontalFlex' style={{columnGap:'3%', height:'45%',width:'100%'}}>
+            <div className='horizontalFlex' style={{ height:'45%',width:'50%'}}>
                     {
-                        /*/
-                            {Object.keys(CATEGORIES).map((name,i)=><MenuItem id="menuItem" onClick={()=>menuClick(CATEGORIES[name])}>
-                                {CATEGORIES[name]}</MenuItem>
-                        )}*/
                         Object.keys(currentCategories).map((name,i)=> 
                             <CatCard initialAmount={currentCategories[name]} key={i} category={name}></CatCard>
                         )
                     }
                 </div> 
-            <Button onClick={saveBudget} variant = "outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:"6%"}}>Save Budget</Button>
+            <Button className="button" onClick={saveBudget} variant = "outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:"2%"}}>Save Budget</Button>
             <h3 style={{visibility: serverError ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder', fontSize:'xxl', marginTop:'4%'}}>Server error - budget not saved</h3>
             <h3 style={{visibility: noChanges ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder', fontSize:'xxl', marginTop:'4%'}}>Nothing to save - please make changes first!</h3>
         </div>

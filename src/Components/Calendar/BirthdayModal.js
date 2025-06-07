@@ -50,7 +50,7 @@ export default function BirthdayModal(props) {
                         <Input name="name" sx={{width: 300, marginBottom: '3%', helperText:"A name is required."}} placeholder="Name" error={displayError} required></Input>
                         <Input sx={{width: 300, marginBottom: '3%'}} placeholder="Note"> </Input>
                         <Input sx={{width: 300, marginBottom: '3%'}} placeholder="Reminder"> </Input>
-                        <Button onClick={handleSubmit} sx={{width: 100, marginBottom: '3%', display: props.name === null ? 'block': 'none', marginTop:'6%'}} variant = "plain">Create</Button>
+                        <Button className="button" onClick={handleSubmit} sx={{width: 100, marginBottom: '3%', display: props.name === null ? 'block': 'none', marginTop:'6%'}} variant = "plain">Create</Button>
                         <h3 style={{display: props.name === null ? 'none': 'block'}}>Birthday Created!</h3>
                     </div>
                 </form>

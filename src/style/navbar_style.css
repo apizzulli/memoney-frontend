@@ -8,6 +8,14 @@
 .navBarMenu{
     font-family:'Avenir Next Condensed';
 }
+
+.menuItem{
+    color: white;
+}
+.menuItem:hover{
+    cursor: pointer;
+    background-color: rgb(0, 103, 248);
+  }
 .button-container{
     display: flex;
     column-gap: 0.3%;
@@ -16,8 +24,9 @@
     margin-left: 0.5%;
     color: white;
 }
-.menuItem{
-    font-family: 'Avenir Next Condensed';
+.MuiMenu-root ul {
+    color: white;
+    background-color: rgb(80, 99, 125);
 }
 a{
     color: white;

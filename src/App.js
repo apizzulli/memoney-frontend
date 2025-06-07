@@ -6,6 +6,7 @@ import CreateAccount from './Components/User/CreateAccount.js';
 import Transactions from './Components/Transactions/ViewTransactions.js';
 import AddTransactions from './Components/Transactions/AddTransaction.js';
 import HomeScreen from './Components/HomeScreen.js';
+import Login from './Components/User/Login.js';
 import CreateBudget from './Components/Budget/CreateBudget.js';
 import ViewBudgets from './Components/Budget/ViewBudgets.js';
 import EditBudget from './Components/Budget/EditBudget.js';
@@ -28,6 +29,7 @@ function App() {
             <NavBar></NavBar> 
             <Routes>
               <Route path = "/" element = {<HomeScreen/>}></Route>
+              <Route path="/login" element={<Login/>}></Route>
               <Route path="/calendar-view" element={<CalendarView/>}></Route>
               <Route path="/budgets/create" element={<CreateBudget/>}></Route>
               <Route path="/budgets/edit" element={<EditBudget/>}></Route>

@@ -1,7 +1,7 @@
 import Button from '@mui/joy/Button';
 import Input from '@mui/joy/Input';
 import {useEffect, useState} from 'react';
-import {login} from '../../Controllers/Requests';
+import {login} from '../../Controllers/Requests.js';
 import {
     BrowserRouter,
     Routes,
@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { BudgetContext } from '../../App.js';
 
-export default function LoginForm() {
+export default function Login() {
 
     const navigate = useNavigate();
     const [ noUser, setNoUser ] = useState(false);
@@ -50,7 +50,7 @@ export default function LoginForm() {
         setUserId(user.id);
         setLoggedIn(true);
         localStorage.setItem("userId",user.id);
-        localStorage.setItem("jwt",response.token.value);
+        localStorage.setItem("token",response.token.value);
         if(user.budgets.length == 0){
             //localStorage.setItem("budgets", response.json());
             navigate("/budgets/create");
@@ -74,7 +74,7 @@ export default function LoginForm() {
                     <div style={{height:'60%',width: '100%',visibility: noUser || serverError ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder'}}>
                         { noUser ? "No such user" : "Server error"}
                     </div>
-                    <Button onClick={loginUser} variant="outlined" style={{marginTop:'0%',fontFamily:'inherit',color:'inherit'}}>Login</Button>
+                    <Button className="button" onClick={loginUser} variant="outlined" style={{marginTop:'0%',fontFamily:'inherit',color:'inherit'}}>Login</Button>
                 </div>
             </div>
             <h3 style={{marginTop:'2%'}}>Don't have an account? Create one <a href="/createAccount" style={{textDecoration: "underline"}}>here</a>.</h3>

@@ -34,7 +34,6 @@
     visibility: visible;
     transition: opacity 1s;
     opacity: 1;
-    margin-top: 5%;
 }  
 .card:hover{
     cursor: pointer;
@@ -42,4 +41,20 @@
 }
 #card:hover{
     cursor:pointer;
+}
+.input{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    height: 100%; /* Or a fixed height */
+
+    margin-top: 0%;
+    margin-bottom: 0%;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    color: inherit;
+    font: inherit;
 }

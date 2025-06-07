@@ -67,7 +67,7 @@ export default function ViewTransactions() {
                 :
                 <h2>No Transactions to Display</h2>
             }
-            <Button variant="outlined" onClick={()=>navigate("/transactions/add")} style={{fontFamily:'inherit',color:'inherit', marginTop:'1%'}}>Add New Transaction</Button>
+            <Button className="button" variant="outlined" onClick={()=>navigate("/transactions/add")} style={{fontFamily:'inherit',color:'inherit', marginTop:'1%'}}>Add New Transaction</Button>
         </div>
     );
 }

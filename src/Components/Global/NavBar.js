@@ -1,4 +1,6 @@
 import "../../style/navbar_style.css";
+import "../../style/App.css";
+
 import Button from '@mui/joy/Button';
 import { Outlet, Link, Navigate, useNavigate } from "react-router-dom";
 import { useState, useContext } from 'react';
@@ -74,19 +76,19 @@ export default function NavBar(){
         </div>);
     }
     return(
-            <div  className="horizontalFlex" style={{display:'flex',width:'100%', height:'5%', borderBottom: '.02rem solid', borderBottomColor:'white',justifyContent:'space-between'}}>
+            <div  className="horizontalFlex" style={{display:'flex',width:'100%', height:'5%', borderBottom: '.02rem solid', justifyContent:'space-between'}}>
                 <div className="horizontalFlex" style={{visibility: loggedIn ? 'visible' : 'hidden', marginLeft:'.5%'}}>
                     <h3 style={{marginRight:'1%'}}>MEMONEY™</h3>
-                    <Button onClick={()=>{navigate("/")}} style={{fontFamily:'inherit',color:'inherit'}} variant="text">Home</Button>
-                    <Button onClick={openMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Budgets</Button>
-                    <Menu id="navBarMenu" anchorEl={anchorEl} open={Boolean(anchorEl)}  anchorOrigin={{vertical:'bottom'}}>   
-                        <MenuItem className="menuItem" onClick={closeMenu} ><Link style={{color:'black',fontFamily: 'Avenir Next Condensed'}} to="/budgets/view">View Existing Budgets</Link></MenuItem>
-                        <MenuItem className="menuItem" onClick={closeMenu}><Link style={{color:'black'}} to="/budgets/create">Create New Budget</Link></MenuItem>
+                    <Button className="button" onClick={()=>{navigate("/")}} style={{fontFamily:'inherit',color:'inherit'}} variant="text">Home</Button>
+                    <Button className="button" onClick={openMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Budgets</Button>
+                    <Menu className="menuBack" anchorEl={anchorEl} open={Boolean(anchorEl)}  anchorOrigin={{vertical:'bottom'}}>   
+                        <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeMenu} ><Link to="/budgets/view">View Existing Budgets</Link></MenuItem>
+                        <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeMenu}><Link to="/budgets/create">Create New Budget</Link></MenuItem>
                     </Menu>
-                    <Button onClick={openTransMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Transactions</Button>
+                    <Button className="button" onClick={openTransMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Transactions</Button>
                     <Menu id="navBarMenu" anchorEl={anchorEl2} open={Boolean(anchorEl2)}  anchorOrigin={{vertical:'bottom'}}>   
-                        <MenuItem className="menuItem" onClick={closeTransMenu} ><Link style={{color:'black'}} to="/transactions">View Existing Transactions</Link></MenuItem>
-                        <MenuItem className="menuItem" onClick={closeTransMenu}><Link style={{color:'black'}} to="/transactions/add">Create New Transaction</Link></MenuItem>
+                        <MenuItem className="button" style={{fontFamily:'inherit'}} onClick={closeTransMenu} ><Link  to="/transactions">View Existing Transactions</Link></MenuItem>
+                        <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeTransMenu}><Link  to="/transactions/add">Create New Transaction</Link></MenuItem>
                     </Menu>
                 </div>
                 <div style={{display:'flex', flexDirection:'row',fontSize:'12pt',marginRight:'1.5%',width:'15%', justifyContent:'flex-end'}}>

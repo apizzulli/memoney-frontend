@@ -1,9 +1,19 @@
 .App-dark {
+  webkit-appearance: none; 
   text-align: center;
   height: 100vh;
   width: 100vw;
   background-color: rgb(39, 48, 61);
   color: white;
+  .button{
+    font-family: inherit;
+    
+  }
+  .button:hover{
+    
+    cursor: pointer;
+    background-color: rgb(80, 99, 125);
+  }
 }
 .App-light {
   text-align: center;
@@ -11,6 +21,8 @@
   width: 100vw;
   background-color: rgb(219, 219, 219);
   color: rgb(57, 97, 126);
+
+  
 }
 @font-face {
   font-family: 'Avenir Next Condensed' Helvetica, sans-serif normal;

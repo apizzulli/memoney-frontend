@@ -104,7 +104,7 @@ export default function Transactions() {
                     <div style={{width:'50%', marginBottom:'2%'}}>Description: </div>
                     <Input id="descInput" name="desc" style={{width:'50%',height:'70px'}}></Input>
                 </div>
-                <Button onClick={addTransaction} variant="outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'1%', width:'5%'}}>Save</Button>
+                <Button className="button" onClick={addTransaction} variant="outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'1%', width:'5%'}}>Save</Button>
         </div>
     )
 }

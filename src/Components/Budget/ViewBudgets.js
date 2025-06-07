@@ -6,6 +6,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import '../../style/default_styles.css'
 import BudgetDetails from "./BudgetDetails";
 import Stack from '@mui/material/Stack';
+import { jwtDecode } from 'jwt-decode';
 
 export default function ViewBudgets(props){
     const navigate = useNavigate();
@@ -84,10 +85,19 @@ export default function ViewBudgets(props){
                         :
                         <h3>No Recent Transactions</h3>
                     }
-                    <Button variant="outlined" onClick={()=>transactions(budget)} style={{color:'inherit',fontFamily:'inherit',marginBottom:'5%',marginTop:'2%'}}>Go to Transactions</Button>
+                    <Button className="button" variant="outlined" onClick={()=>transactions(budget)} style={{color:'inherit',fontFamily:'inherit',marginBottom:'5%',marginTop:'2%'}}>Go to Transactions</Button>
             </div>
         );
     }
+
+    useEffect(() => {
+        let token = jwtDecode(localStorage.getItem("token"));
+        if(!token || (token && token.expiresIn < Date.now() / 1000)){
+            localStorage.clear();
+            navigate("/login", {state: {message: "Session expired, please log in again."}});
+            return;
+        }
+      }, []); 
 
     return (
         <div style={{height:'100vh'}}>

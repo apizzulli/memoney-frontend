@@ -8,6 +8,8 @@ import '../../style/default_styles.css';
 import { useContext, useState, useEffect } from 'react';
 import Input from '@mui/joy/Input';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import Button from '@mui/joy/Button';
+
 export const percent = new Intl.NumberFormat('default', {
     style: 'percent'
 }); 
@@ -20,19 +22,19 @@ export default function CatCard({category, initialAmount}) {
     switch(category){
         case "Groceries":
         case "Grocery":
-            icon = <ShoppingCartIcon  style={{marginTop:'auto',marginBottom:'auto',color:'white',fontSize:'30pt'}}></ShoppingCartIcon>;    
+            icon = <ShoppingCartIcon  style={{color:'white',fontSize:'30pt'}}></ShoppingCartIcon>;    
             break;
         case "Internet":
-            icon = <WifiIcon  style={{marginTop:'auto',marginBottom:'auto',color:'white',fontSize:'30pt'}}></WifiIcon>;
+            icon = <WifiIcon  style={{color:'white',fontSize:'30pt'}}></WifiIcon>;
             break;
         case "Savings":
-            icon = <SavingsIcon  style={{marginTop:'auto',marginBottom:'auto',color:'white',fontSize:'30pt'}}></SavingsIcon>;
+            icon = <SavingsIcon  style={{color:'white',fontSize:'30pt'}}></SavingsIcon>;
             break;
         case "Phone":
-            icon = <LocalPhoneIcon  style={{marginTop:'auto',marginBottom:'auto',color:'white',fontSize:'30pt'}}></LocalPhoneIcon>;
+            icon = <LocalPhoneIcon  style={{color:'white',fontSize:'30pt'}}></LocalPhoneIcon>;
             break;
         case "Discretionary":
-            icon = <LocalAtmIcon  style={{marginTop:'auto',marginBottom:'auto',color:'white',fontSize:'30pt'}}></LocalAtmIcon>;
+            icon = <LocalAtmIcon  style={{color:'white',fontSize:'30pt'}}></LocalAtmIcon>;
             break;
         default:
             break;
@@ -41,7 +43,8 @@ export default function CatCard({category, initialAmount}) {
     // if(amount){
     //     amountText=<div style={{fontSize:'8pt',marginTop:'12%',color:`${colorPicker(amount)}`, fontWeight:'bolder',height:'50%'}}>{percent.format(amount)} spent</div>;
     // }
-    function set(){
+    function set(event){
+        event.stopPropagation();
         let inputVal = document.getElementById(category+"Input").value;
         if(inputVal != ""){
             setAmount(inputVal);
@@ -50,17 +53,28 @@ export default function CatCard({category, initialAmount}) {
         }
         setAmountInput(false);
     }
+    const inputs = () =>{
+            return (
+                <div style={{height:'100%', columnGap:'0%',rowGap:'0%',flexWrap:'nowrap'}} className='horizontalFlex'>
+                    <input style={{width:'55%',marginLeft:"0%"}} className="input" id={category+"Input"} text="$" placeholder="Amount"></input>
+                    <CheckCircleIcon style={{width:'10%',height:'100%',marginLeft:"5%"}} onClick={set}></CheckCircleIcon>
+                </div>
+            );
+    }
     return(
-        <div id={category} className="tooltip" style={{width:'10%'}}>
-            <Card onClick={()=>setAmountInput(true)} variant="outlined" style={{color:'white',alignItems:'center',flexDirection:'column',display:'flex',marginBottom:'3%',backgroundColor:'rgb(39, 48, 61)',outlineWidth:'2px',outlineStyle:'solid',outlineColor:'rgba(255, 255, 255, 0.2)',width:'100%', height:'100%'}}>
+        <div id={category} style={{width:'100%'}} className="tooltip">
+            <Button className="button" onClick={()=>setAmountInput(true)} variant="outlined" style={{height:'100%',maxHeight:'200px',width:'100%',color:'white',alignItems:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
                 {icon}
-                ${amount}
-            </Card>
+                {
+                    amountInput ? 
+                    inputs()
+                    :
+                    <div style={{width:'100%', height:'100%'}} >
+                        <span >${amount}</span>
+                    </div>
+                }
+            </Button>
             <span className='tooltiptext'>{category}</span>
-            <div style={{columnGap:'4%',display:'flex',visibility: amountInput ? 'visible' : 'hidden',alignItems:'center'}}>
-                <Input id={category+"Input"} placeholder="Amount"></Input>
-                <CheckCircleIcon onClick={set}></CheckCircleIcon>
-            </div>
             {/* {amountText} */}
         </div>
     );

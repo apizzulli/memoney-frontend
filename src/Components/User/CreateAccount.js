@@ -30,7 +30,7 @@ export default function CreateAccount() {
                     <form onSubmit={createAccount}>
                         <Input name="user" placeholder="Email" required></Input>
                         <Input type="password" name="password" style={{marginTop:'7%'}} placeholder="Password" required></Input>
-                        <Button type = "submit" variant="outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'7%'}}>Create Account</Button>
+                        <Button className="button" type = "submit" variant="outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'7%'}}>Create Account</Button>
                     </form>
                 </div>
         </div>
