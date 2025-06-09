@@ -1,10 +1,10 @@
-import { useState,useContext } from 'react';
+import { useState,useContext, useEffect } from 'react';
 import '../../style/default_styles.css';
 import Button from '@mui/joy/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Shop } from '@mui/icons-material';
 import { BudgetContext } from '../../App.js';
-
+import { pickIcon } from '../Global/CatCard.js';
 const USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -15,7 +15,7 @@ export default function ViewTransactions() {
     const { lightMode } = useContext(BudgetContext);
     const navigate = useNavigate();
     const location = useLocation();
-    const [ transactions, setTransactions ] = useState(JSON.parse(localStorage.getItem("selectedBudget")).transactions);//.sort((a, b) => new Date(b.date) - new Date(a.date)));
+    const [ transactions, setTransactions ] = useState(JSON.parse(localStorage.getItem("selectedBudget")).transactions);//);.sort((a, b) => new Date(a.date) - new Date(b.date));
     const [ remainingVals, setRemainingVals ] = useState(JSON.parse(localStorage.getItem("remainingVals")));
     const budgetName = useState(JSON.parse(localStorage.getItem("selectedBudget")).name);
     const [ remaining, setRemaining ] = useState(JSON.parse(localStorage.getItem("selectedBudget")).remaining);
@@ -30,37 +30,36 @@ export default function ViewTransactions() {
         let newDate = new Date(date);
         return newDate.toLocaleDateString("en-US");
     };
-
+    useEffect(() => {
+        let k = localStorage.getItem("selectedBudget");
+        let budget = null;
+        if(k)
+            budget = JSON.parse(k);
+        let spent = budget.total - budget.remaining;
+        let per = spent/budget.total * 100;
+        console.log("hi");
+      }, []); 
     return(
-        <div onClick={view} className='verticalFlex' style={{width:'100%', height:'100%'}}>
-            <h1 >{budgetName}</h1>
-            <div style={{height:'30%',width:'40%'}}className='verticalFlex'>
-                <div className="horizontalFlex" style={{alignItems:'center', justifyContent:'center',height:'75%',width:'100%'}}>
-                    <div className="tooltip" style={{height:'30%',display:'flex',flexDirection:'column',backgroundColor:'red',width:`${total-remaining}%`}}>
-                        <span style={{marginTop:'auto', marginBottom:'auto',height:'100%'}} className='tooltiptext'>{Math.round((total-remaining/total)*100)}% Spent</span>
-                    </div> 
-                    <div className='tooltip' style={{height:'30%',display:'flex',flexDirection:'column',backgroundColor:'green',width:`${remaining}%`}}>
-                        <span  className='tooltiptext'>{Math.round((remaining/total)*100)}% Spent</span>
-                    </div>
+        <div onClick={view} style={{display:'flex', flexDirection:'column', alignItems:'center',width:'100%', height:'100%'}}>
+            <h1>{budgetName}</h1>
+            <div className="horizontalFlex" style={{marginTop:'1%',height:'5%',borderRadius: '15px',alignItems:'center', justifyContent:'center',width:'60%', columnGap:'0'}}>
+                <div className="tooltip" style={{borderTopLeftRadius:'15px', borderBottomLeftRadius:'15pt',backgroundColor:'red',width:`${total-remaining}%`}}>
+                    <span className='tooltiptext'>{Math.round((total-remaining)/total*100)}% Spent</span>
                 </div>
-                {USDollar.format(remaining)} Remaining
+                <div className='tooltip' style={{borderTopRightRadius:'15pt',borderBottomRightRadius:'15pt',backgroundColor:'green',width:`${remaining}%`}}>
+                    <span  className='tooltiptext'>{Math.round((remaining/total)*100)}% Remaining</span>
+                </div>
             </div>
+            <h3 style={{marginTop:'1%'}}>{USDollar.format(remaining)} Remaining</h3>
             {
                 transactions != undefined && transactions.length > 0? 
                 <div className='verticalFlex' style={{height:'100%', width:'70%'}}>
-                        <div className='horizontalFlex' style={{columnGap:'3%',width:'100%', height:'25%'}}>
-                        {/* {
-                            remainingVals.map((val, i)=>
-                                spendCard(val,i)
-                            )
-                        } */}
-                    </div>
                     <h2>Transactions:</h2>  
                     <div style={{height:'75%',width:'45%'}}>
                         {transactions.map((trans) => 
                             <div style={{display:'flex',flexDirection:'row',alignContent:'center',alignItems:'center',justifyContent:'center',backgroundColor:'rgb(39, 48, 61)',marginTop:'2%',height:'8%',marginBottom:'5%'}}>
                                 <div style={{marginRight:'2%'}}>{dateStr(trans.date)}</div>
-                                {/* <div style={{marginRight:'2%'}}>{pickIcon(trans.category)}</div> */}
+                                <div style={{marginRight:'2%'}}>{pickIcon(trans.category)}</div>
                                 <div >{" -" + USDollar.format(trans.amount)}</div>
                             </div>
                         )}
@@ -69,7 +68,7 @@ export default function ViewTransactions() {
                 :
                 <h2>No Transactions to Display</h2>
             }
-            <Button className="button" variant="outlined" onClick={()=>navigate("/transactions/add")} style={{fontFamily:'inherit',color:'inherit', marginTop:'1%'}}>Add New Transaction</Button>
+            <Button className="button" variant="outlined" onClick={()=>navigate("/transactions/add")} style={{fontFamily:'inherit',color:'inherit'}}>Add New Transaction</Button>
         </div>
     );
 }

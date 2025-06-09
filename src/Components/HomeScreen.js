@@ -14,16 +14,16 @@ export default function HomeScreen() {
     const { budgets, setBudgets } = useContext(BudgetContext);
     const { loggedIn, setLoggedIn } = useContext(BudgetContext);
 
-    useEffect(() => {
-        let token = jwtDecode(localStorage.getItem("token"));
-        let exp = token.exp.toString();
-        let now = Date.now();
-        if(!token || (token && token.exp < Date.now() / 1000)){
-           localStorage.clear();
-            navigate("/login", {state: {message: "Session expired, please log in again."}});
-            return;
-        }
-      }, []); 
+    // useEffect(() => {
+    //     let token = jwtDecode(localStorage.getItem("token"));
+    //     let exp = token.exp.toString();
+    //     let now = Date.now();
+    //     if(!token || (token && token.exp < Date.now() / 1000)){
+    //        localStorage.clear();
+    //         navigate("/login", {state: {message: "Session expired, please log in again."}});
+    //         return;
+    //     }
+    //   }, []); 
     return(
         <div className='verticalFlex' style={{marginTop:'2%', width:'100%'}}>
             <h1 style={{margin: 0}}>Welcome to Budgeter</h1>

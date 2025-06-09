@@ -14,10 +14,7 @@ export const percent = new Intl.NumberFormat('default', {
     style: 'percent'
 }); 
 
-export default function CatCard({category, initialAmount}) {
-    const [ amountInput, setAmountInput ] = useState(false);
-    const [ amountSet, setAmountSet ] = useState(false);
-    const [ amount, setAmount ] = useState(initialAmount);
+export const pickIcon = (category) => {
     let icon = null;
     switch(category){
         case "Groceries":
@@ -39,10 +36,19 @@ export default function CatCard({category, initialAmount}) {
         default:
             break;
     }
+    return icon;
+}
+
+export default function CatCard({category, initialAmount}) {
+    const [ amountInput, setAmountInput ] = useState(false);
+    const [ amountSet, setAmountSet ] = useState(false);
+    const [ amount, setAmount ] = useState(initialAmount);
+    let icon = pickIcon(category);
     // let amountText = null;
     // if(amount){
     //     amountText=<div style={{fontSize:'8pt',marginTop:'12%',color:`${colorPicker(amount)}`, fontWeight:'bolder',height:'50%'}}>{percent.format(amount)} spent</div>;
     // }
+    
     const h =(event) => {
         if (event.key === 'Enter') {
             set(event);
