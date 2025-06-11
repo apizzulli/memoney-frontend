@@ -53,7 +53,7 @@ export default function ViewTransactions() {
             <h3 style={{marginTop:'1%'}}>{USDollar.format(remaining)} Remaining</h3>
             {
                 transactions != undefined && transactions.length > 0? 
-                <div className='verticalFlex' style={{height:'100%', width:'70%'}}>
+                <div className='verticalFlex' style={{height:'30%', width:'70%'}}>
                     <h2>Transactions:</h2>  
                     <div style={{height:'75%',width:'45%'}}>
                         {transactions.map((trans) => 
@@ -68,7 +68,7 @@ export default function ViewTransactions() {
                 :
                 <h2>No Transactions to Display</h2>
             }
-            <Button className="button" variant="outlined" onClick={()=>navigate("/transactions/add")} style={{fontFamily:'inherit',color:'inherit'}}>Add New Transaction</Button>
+            <Button className="button" variant="outlined" onClick={()=>navigate("/transactions/add")} style={{marginTop:'1%',fontFamily:'inherit',color:'inherit'}}>Add New Transaction</Button>
         </div>
     );
 }

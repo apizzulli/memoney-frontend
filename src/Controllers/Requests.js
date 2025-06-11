@@ -109,3 +109,17 @@ export function getBudget(id){
     .then(response => response.json())
     .then(data => console.log(data));
 }
+
+export async function email() {
+    return fetch('http://localhost:8080/user/testEmail',
+        {
+            headers: {
+                "Access-Control-Allow-Origin" : "*",
+                "Accept":"application/json",
+                "Content-Type":"application/json",
+        },
+            method: "GET"
+        }).then((response)=> {
+            console.log(response);
+        })
+}

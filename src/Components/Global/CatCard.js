@@ -66,22 +66,22 @@ export default function CatCard({category, initialAmount}) {
     }
     const inputs = () =>{
             return (
-                <div style={{height:'100%', columnGap:'0%',rowGap:'0%',flexWrap:'nowrap'}} className='horizontalFlex'>
-                    <input onKeyDown={h} style={{marginLeft:"5%",width:'55%',marginLeft:"0%"}} className="input" id={category+"Input"} type="number" placeholder="Amount"></input>
-                    <CheckCircleIcon fontSize="small" style={{paddingLeft:"5%"}} onClick={set}></CheckCircleIcon>
+                <div style={{display:'flex',flexDirection:'row'}}>
+                    <input onKeyDown={h} style={{width:'100%',textAlign:'center'}} className="input" id={category+"Input"} type="number" placeholder="Amount"></input>
+                    <CheckCircleIcon fontSize="small" onClick={set}></CheckCircleIcon>
                 </div>
             );
     }
     return(
         <div id={category} style={{width:'100%'}} className="tooltip">
-            <Button className="button" onClick={()=>setAmountInput(true)} variant="outlined" style={{height:'100%',maxHeight:'200px',width:'100%',color:'white',alignItems:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
+            <Button className="button" onClick={()=>setAmountInput(true)} variant="outlined" style={{height:'100%',maxHeight:'200px',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
                 {icon}
                 {
                     amountInput ? 
                     inputs()
                     :
-                    <div style={{width:'100%', height:'100%'}} >
-                        <span style={{marginTop:'5%'}} >${amount}</span>
+                    <div style={{width:'100%', height:'100%',marginRight:'0%',marginLeft:'0%'}} >
+                        <span style={{textAlign:'center',display:'block',width:'100%',}} >${amount}</span>
                     </div>
                 }
             </Button>

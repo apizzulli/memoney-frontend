@@ -102,10 +102,7 @@ export default function CreateBudget(){
                         )
                     }
                 </div>               
-                <div id="card" onClick={createBudget} style={{borderRadius: '10px',backgroundColor:'rgb(39, 48, 61)',outlineWidth:'.5px',outlineStyle:'solid',outlineColor:'white',hover:'cursor',marginTop:'2%',paddingTop:'.5%',paddingBottom:'.5%',fontSize:'25pt', gap:'3%', height:'15%',width:'10%'}} className='horizontalFlex'>
-                    <div style={{fontSize:'16pt'}} >Save</div> 
-                    <SaveAltIcon  style={{hover:'cursor',fontSize:'16pt'}}></SaveAltIcon>
-                </div>
+                <Button onClick={createBudget} variant="outlined" style={{color:'white',fontFamily:'inherit'}} >Save<SaveAltIcon  style={{fontSize:'15pt',marginLeft:'8%',hover:'cursor'}}></SaveAltIcon></Button> 
             </div>
             <h3 style={{visibility: serverFail ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder', fontSize:'xxl', marginTop:'2%'}}>Server error, please try again</h3>
         </div>

@@ -25,6 +25,8 @@ function App() {
   const [ lightMode, setLightMode ] = useState(false);
 
   useEffect(() => {
+    if(window.location.href.includes("createAccount"))
+      return; 
     if(!localStorage.getItem("token")){
       localStorage.clear();
       navigate("/login", {state: {message: "Session expired, please log in again."}});
