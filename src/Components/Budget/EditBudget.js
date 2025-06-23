@@ -189,7 +189,7 @@ export default function EditBudget(){
             <div className='horizontalFlex' style={{ height:'45%',width:'50%'}}>
                     {
                         Object.keys(currentCategories).map((name,i)=> 
-                            <CatCard initialAmount={currentCategories[name]} key={i} category={name}></CatCard>
+                            <CatCard allowInput={true} initialAmount={currentCategories[name]} key={i} category={name}></CatCard>
                         )
                     }
                 </div> 

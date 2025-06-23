@@ -98,7 +98,7 @@ export default function CreateBudget(){
                                 {CATEGORIES[name]}</MenuItem>
                         )}*/
                         CATEGORIES.map((category,i)=> 
-                            <CatCard initialAmount={0} key={i} category={category}></CatCard>
+                            <CatCard allowInput={true} initialAmount={0} key={i} category={category}></CatCard>
                         )
                     }
                 </div>               

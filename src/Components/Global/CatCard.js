@@ -39,10 +39,11 @@ export const pickIcon = (category) => {
     return icon;
 }
 
-export default function CatCard({category, initialAmount}) {
+export default function CatCard({category, initialAmount, allowInput, width, setSelected, isSelected}) {
     const [ amountInput, setAmountInput ] = useState(false);
     const [ amountSet, setAmountSet ] = useState(false);
     const [ amount, setAmount ] = useState(initialAmount);
+
     let icon = pickIcon(category);
     // let amountText = null;
     // if(amount){
@@ -65,27 +66,30 @@ export default function CatCard({category, initialAmount}) {
         setAmountInput(false);
     }
     const inputs = () =>{
-            return (
-                <div style={{display:'flex',flexDirection:'row'}}>
-                    <input onKeyDown={h} style={{width:'100%',textAlign:'center'}} className="input" id={category+"Input"} type="number" placeholder="Amount"></input>
-                    <CheckCircleIcon fontSize="small" onClick={set}></CheckCircleIcon>
-                </div>
-            );
+        return (
+            <div style={{display:'flex',flexDirection:'row'}}>
+                <input onKeyDown={h} style={{width:'100%',textAlign:'center'}} className="input" id={category+"Input"} type="number" placeholder="Amount"></input>
+                <CheckCircleIcon fontSize="small" onClick={set}></CheckCircleIcon>
+            </div>
+        );
     }
     return(
-        <div id={category} style={{width:'100%'}} className="tooltip">
-            <Button className="button" onClick={()=>setAmountInput(true)} variant="outlined" style={{height:'100%',maxHeight:'200px',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
+        <div id={category} style={{width: width}} className="tooltip">
+            <Button className="button" onClick={()=>setSelected(category)} variant="outlined" style={{backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',maxHeight:'200px',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
                 {icon}
                 {
-                    amountInput ? 
-                    inputs()
+                    allowInput ? 
+                        amountInput ? 
+                        inputs()
+                        :
+                        <div style={{width:'100%', height:'100%',marginRight:'0%',marginLeft:'0%'}} >
+                            <span style={{textAlign:'center',display:'block',width:'100%',}} >${amount}</span>
+                        </div>
                     :
-                    <div style={{width:'100%', height:'100%',marginRight:'0%',marginLeft:'0%'}} >
-                        <span style={{textAlign:'center',display:'block',width:'100%',}} >${amount}</span>
-                    </div>
+                    <></>
                 }
             </Button>
-            <span className='tooltiptext'>{category}</span>
+            <span style={{textAlign:'center'}} className='tooltiptext'>{category}</span>
             {/* {amountText} */}
         </div>
     );
