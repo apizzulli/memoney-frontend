@@ -73,9 +73,16 @@ export default function CatCard({category, initialAmount, allowInput, width, set
             </div>
         );
     }
+    function handleClick(){
+        if(!allowInput){
+            setSelected(category);
+        }else{
+            setAmountInput(true);
+        }
+    }
     return(
         <div id={category} style={{width: width}} className="tooltip">
-            <Button className="button" onClick={()=>setSelected(category)} variant="outlined" style={{backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',maxHeight:'200px',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
+            <Button className="button" onClick={handleClick} variant="outlined" style={{backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',maxHeight:'200px',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
                 {icon}
                 {
                     allowInput ? 

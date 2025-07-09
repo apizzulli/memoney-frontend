@@ -1,7 +1,7 @@
 import Button from '@mui/joy/Button';
 import Input from '@mui/joy/Input';
 import {useEffect, useState} from 'react';
-import {login} from '../../Controllers/Requests.js';
+import {login} from '../../Controllers/UserController.js';
 import {
     BrowserRouter,
     Routes,
@@ -50,7 +50,7 @@ export default function Login() {
         setUserId(user.id);
         setLoggedIn(true);
         localStorage.setItem("userId",user.id);
-        localStorage.setItem("token",response.token.value);
+        localStorage.setItem("jwt",response.token.value);
         if(user.budgets.length == 0){
             //localStorage.setItem("budgets", response.json());
             navigate("/budgets/create");

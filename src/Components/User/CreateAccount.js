@@ -1,7 +1,7 @@
 import Button from '@mui/joy/Button';
 import Input from '@mui/joy/Input';
 import '../../style/default_styles.css';
-import {newUser, email } from '../../Controllers/Requests';
+import {newUser, email } from '../../Controllers/UserController.js';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 

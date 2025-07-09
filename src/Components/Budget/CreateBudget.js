@@ -9,12 +9,13 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { newBudget } from '../../Controllers/Requests.js';
+import { newBudget } from '../../Controllers/BudgetController.js';
 import { BudgetContext } from '../../App.js';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { pickIcon } from '../Global/CatCard.js';
 import Card from '@mui/material/Card';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 const CATEGORIES=[
@@ -43,11 +44,10 @@ export default function CreateBudget(){
     const { userId, setUserId } = useContext(BudgetContext);
     
     async function createBudget (event) {
-        let currentBudgets = JSON.parse(localStorage.getItem("budgets"));
         event.preventDefault();
         let categories = {};
         CATEGORIES.forEach((category)=>{
-            let val = document.getElementById(category+"Input").value;
+            let val = document.getElementById(category).value;
             if(val == "")
                 val = 0;
             categories[category]= parseFloat(val);
@@ -66,8 +66,8 @@ export default function CreateBudget(){
             setServerFail(true);
         }
         else{
-            currentBudgets.push(created);
-            localStorage.setItem("budgets",JSON.stringify(currentBudgets));
+            // currentBudgets.push(created);
+            // localStorage.setItem("budgets",JSON.stringify(currentBudgets));
             //setBudget());
             navigate("/budgets/view");
         }
@@ -101,6 +101,7 @@ export default function CreateBudget(){
                             <CatCard allowInput={true} initialAmount={0} key={i} category={category}></CatCard>
                         )
                     }
+                    <span style={{}}>New <AddCircleIcon style={{paddingLeft:'5%',fontSize:'10pt'}}></AddCircleIcon></span>
                 </div>               
                 <Button onClick={createBudget} variant="outlined" style={{color:'white',fontFamily:'inherit'}} >Save<SaveAltIcon  style={{fontSize:'15pt',marginLeft:'8%',hover:'cursor'}}></SaveAltIcon></Button> 
             </div>

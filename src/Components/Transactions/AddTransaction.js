@@ -5,14 +5,20 @@ import Menu, { MenuPaper } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import { createTransaction } from '../../Controllers/Requests';
+import { createTransaction } from '../../Controllers/TransactionController.js';
 import { useState, useContext, useEffect } from 'react';
-import { BudgetContext, CATEGORIES } from '../../App.js';
+import { BudgetContext } from '../../App.js';
 import CatCard from '../Global/CatCard.js';
 import { useNavigate } from 'react-router-dom';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import BudgetDetails from '../Budget/BudgetDetails.js';
-
+const CATEGORIES=[
+    "Groceries",
+    "Internet",
+    "Phone",
+    "Savings",
+    "Discretionary"
+]
 export default function Transactions() {
 
     const budgetNames = JSON.parse(localStorage.getItem("selectedBudget"));
@@ -22,7 +28,8 @@ export default function Transactions() {
     const { userId, setUserId } = useContext(BudgetContext);
     const [ categories, setCategories ] = useState(JSON.parse(localStorage.getItem("selectedBudget")).categories);
     const [ selectedCat, setSelectedCat ] = useState(null);
-
+    const [ amountInput, setAmountInput ] = useState(false);
+    const [ amount, setAmount ] = useState(0);
     const inputs = ["Amount", "Description", "Date"];
     const navigate = useNavigate();
     function Transaction(category,amount,date, description) {
@@ -59,15 +66,22 @@ export default function Transactions() {
     // function select(){
     //     setSelected(!selected);
     // }
+    function addCategory(){
+        setCategories(CATEGORIES);
+    }
     useEffect(() => {
         let names = [];
         Object.keys(categories).map((category,i)=> 
             names.push(categories[category]));
         console.log("useEffect");
       }, []); 
+    function handleAmount() {
+        setAmount(document.getElementById("amountInput").value);
+        setAmountInput(false);
+    }
     function handleMenuClose(){}
     return(
-            <div className="verticalFlex" style={{width:'100%'}}>
+            <div className="verticalFlex" style={{height:'100%',width:'100%'}}>
                 {
                     budget == null ?
                     <div style={{width:'100%',display:'verticalFlex'}}>
@@ -78,32 +92,36 @@ export default function Transactions() {
                         </Menu>
                     </div>
                     :
-                    <div style={{width:'100%',display:'verticalFlex'}}>
-                        <h1>Add a Transaction</h1>
+                    <div style={{width:'100%',display:'verticalFlex', height:'100%'}}>
+                        <h1>New Transaction</h1>
+                        <h2>{budget.name}</h2>
                         <div style={{display:'flex',flexDirection:'column',width:'100%',alignItems:'center'}}>
                             {/*Date*/}
-                            <div className="verticalFlex" style={{width:'100%',marginBottom: '3%'}}>
-                                <h2>Date</h2>
-                                <input className="input" type="date" placeholder="Date"></input>
+                            <div style={{width:'25%',height:'100%',display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',marginBottom: '2%'}}>
+                                <h3 style={{marginRight:'5%'}}>Date:</h3>
+                                <div style={{width:'50%',marginLeft:'2%',display:'flex',flexDirection:'row',alignItems:'center',alignContent:'center',justifyContent:'center'}}>
+                                    <input id="dateInput" style={{width:'100%',height:'30px',marginLeft:'4%'}} className="input" type="date" ></input>
+                                </div>
                             </div>
                             {/*Amount*/}
-                            <div style={{width:'100%',display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',marginBottom: '2%'}}>
-                                <h3>Amount:</h3>
-                                <input style={{width:'8%',textAlign:'center'}} className="input" type="number" placeholder="$"></input>
-                                <CheckCircleIcon fontSize="small" ></CheckCircleIcon>
+                            <div style={{width:'25%',height:'100%',display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',marginBottom: '1%'}}>
+                                <h3 style={{marginRight:'5%'}}>Amount:</h3>
+                                <div style={{width:'25%',marginLeft:'2%',display:'flex',flexDirection:'row',alignItems:'center',alignContent:'center',justifyContent:'center'}}>
+                                    $<input id="amountInput" style={{textAlign:'right',width:'100%',height:'30px',marginLeft:'4%'}} className="input" type="number" placeholder="Enter" ></input>
+                                </div>
                             </div>
                             {/* <div className="horizontalFlex" style={{width:'50%'}}>
                                 Select a Budget
                                 <ArrowDropDownIcon style={{width:'50%',display: anchorElB === null ? 'block': 'none'}}onClick={handleMenuOpen}></ArrowDropDownIcon>
                                 <ArrowDropUpIcon style={{width:'50%',display:anchorElB === null ? 'none': 'block'}}onClick={handleMenuClose}></ArrowDropUpIcon>    
                             </div> */}
-                            <h2>Category</h2>
+                            <h2 >Category</h2>
                             <div className='horizontalFlex' style={{columnGap:'3%', height:'100%',width:'80%',marginBottom:'2%'}}>
                                 {
                                     // catSelect != null ? 
                                     //     <CatCard  selected={selected} width={'10%'} initialAmount={0} allowInput={false}category={selectedCat}></CatCard>
                                     //     :
-                                        Object.keys(categories).map((category,i)=> 
+                                        CATEGORIES.map((category,i)=> 
                                             <CatCard setSelected={setSelectedCat} isSelected={selectedCat == category ? true : false} width={'10%'} initialAmount={0} key={i} allowInput={false}category={category}></CatCard>
                                         )
                                 }

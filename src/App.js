@@ -27,12 +27,12 @@ function App() {
   useEffect(() => {
     if(window.location.href.includes("createAccount"))
       return; 
-    if(!localStorage.getItem("token")){
+    if(!localStorage.getItem("jwt")){
       localStorage.clear();
       navigate("/login", {state: {message: "Session expired, please log in again."}});
       return;
     }
-    let token = jwtDecode(localStorage.getItem("token"));
+    let token = jwtDecode(localStorage.getItem("jwt"));
     let exp = token.exp.toString();
     let now = Date.now();
     if(token && token.exp < Date.now() / 1000){

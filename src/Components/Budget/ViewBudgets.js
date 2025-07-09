@@ -7,6 +7,7 @@ import '../../style/default_styles.css'
 import BudgetDetails from "./BudgetDetails";
 import Stack from '@mui/material/Stack';
 import { jwtDecode } from 'jwt-decode';
+import { getAllBudgets } from "../../Controllers/BudgetController";
 
 export default function ViewBudgets(props){
     const navigate = useNavigate();
@@ -91,12 +92,18 @@ export default function ViewBudgets(props){
     }
 
     useEffect(() => {
-        let token = jwtDecode(localStorage.getItem("token"));
-        if(!token || (token && token.expiresIn < Date.now() / 1000)){
-            localStorage.clear();
-            navigate("/login", {state: {message: "Session expired, please log in again."}});
-            return;
+        let userId = localStorage.getItem("userId");
+        let currentBudgets = null;
+        const fetchData = async () => {
+            currentBudgets = await getAllBudgets(userId);
+            if(currentBudgets){
+                currentBudgets.forEach((budget) => {
+                    budget.remaining = budget.total - budget.spent;
+                })
+                setBudgets(currentBudgets);
+            }
         }
+        fetchData();
       }, []); 
 
     return (
