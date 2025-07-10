@@ -1,5 +1,4 @@
 .verticalFlex{
-    width:100%;
     display: flex;
     flex-direction:column;
     column-gap: 5;
@@ -31,7 +30,6 @@
 }
   
 .tooltip:hover .tooltiptext {
-    font-size: calc(1vw + 1vh);
     cursor: pointer;
     visibility: visible;
     transition: opacity 1s;

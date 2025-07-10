@@ -1,8 +1,8 @@
 .App-dark {
   webkit-appearance: none; 
   text-align: center;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-color: rgb(39, 48, 61);
   color: white;
   .button{

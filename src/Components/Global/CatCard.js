@@ -39,7 +39,7 @@ export const pickIcon = (category) => {
     return icon;
 }
 
-export default function CatCard({category, initialAmount, allowInput, width, setSelected, isSelected}) {
+export default function CatCard({category, initialAmount, allowInput, width, height, setSelected, isSelected}) {
     const [ amountInput, setAmountInput ] = useState(false);
     const [ amountSet, setAmountSet ] = useState(false);
     const [ amount, setAmount ] = useState(initialAmount);
@@ -81,8 +81,8 @@ export default function CatCard({category, initialAmount, allowInput, width, set
         }
     }
     return(
-        <div id={category} style={{width: width}} className="tooltip">
-            <Button className="button" onClick={handleClick} variant="outlined" style={{backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',maxHeight:'200px',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
+        <div id={category} style={{width:"20%",height:"20%"}} className="tooltip">
+            <Button className="button" onClick={handleClick} variant="outlined" style={{backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
                 {icon}
                 {
                     allowInput ? 
@@ -90,7 +90,7 @@ export default function CatCard({category, initialAmount, allowInput, width, set
                         inputs()
                         :
                         <div style={{width:'100%', height:'100%',marginRight:'0%',marginLeft:'0%'}} >
-                            <span style={{textAlign:'center',display:'block',width:'100%',}} >${amount}</span>
+                            <span style={{textAlign:'center',width:'100%'}} >${amount}</span>
                         </div>
                     :
                     <></>

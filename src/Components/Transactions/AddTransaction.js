@@ -12,6 +12,17 @@ import CatCard from '../Global/CatCard.js';
 import { useNavigate } from 'react-router-dom';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import BudgetDetails from '../Budget/BudgetDetails.js';
+/*
+ budget == null ?
+                <div style={{width:'100%',display:'verticalFlex'}}>
+                    <Menu>
+                        {Object.keys(budgetNames).map((budgetName,i)=>
+                            <MenuItem key={i} id="menuItem" onClick={()=>{setBudget(budgetNames[budgetName]); localStorage.setItem("selectedBudget",JSON.stringify(budgetNames[budgetName])); navigate("/budgets/view")}}>{budgetNames[budgetName].name}</MenuItem>
+                        )}
+                    </Menu>
+                </div>
+                :
+*/
 const CATEGORIES=[
     "Groceries",
     "Internet",
@@ -81,62 +92,38 @@ export default function Transactions() {
     }
     function handleMenuClose(){}
     return(
-            <div className="verticalFlex" style={{height:'100%',width:'100%'}}>
-                {
-                    budget == null ?
-                    <div style={{width:'100%',display:'verticalFlex'}}>
-                        <Menu>
-                            {Object.keys(budgetNames).map((budgetName,i)=>
-                                <MenuItem key={i} id="menuItem" onClick={()=>{setBudget(budgetNames[budgetName]); localStorage.setItem("selectedBudget",JSON.stringify(budgetNames[budgetName])); navigate("/budgets/view")}}>{budgetNames[budgetName].name}</MenuItem>
-                            )}
-                        </Menu>
+            <div className="verticalFlex" style={{height:'20%',width:'100%', marginTop:'2%'}}>   
+                <div className="verticalFlex" style={{height:'20%',width:'70vw'}}>
+                    <h1 style={{marginTop:'0'}}>New Transaction</h1>
+                    <h2>{budget.name}</h2>
+
+                    {/*------DATE & AMOUNT------*/}
+                    <div className='horizontalFlex' style={{height:'15%',width:'30%',justifyContent:'space-between'}}>
+                        <h3>Amount:</h3>
+                        <input id="amountInput" style={{textAlign:'center'}} className="input" type="number" placeholder="Enter $" ></input>
                     </div>
-                    :
-                    <div style={{width:'100%',display:'verticalFlex', height:'100%'}}>
-                        <h1>New Transaction</h1>
-                        <h2>{budget.name}</h2>
-                        <div style={{display:'flex',flexDirection:'column',width:'100%',alignItems:'center'}}>
-                            {/*Date*/}
-                            <div style={{width:'25%',height:'100%',display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',marginBottom: '2%'}}>
-                                <h3 style={{marginRight:'5%'}}>Date:</h3>
-                                <div style={{width:'50%',marginLeft:'2%',display:'flex',flexDirection:'row',alignItems:'center',alignContent:'center',justifyContent:'center'}}>
-                                    <input id="dateInput" style={{width:'100%',height:'30px',marginLeft:'4%'}} className="input" type="date" ></input>
-                                </div>
-                            </div>
-                            {/*Amount*/}
-                            <div style={{width:'25%',height:'100%',display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',marginBottom: '1%'}}>
-                                <h3 style={{marginRight:'5%'}}>Amount:</h3>
-                                <div style={{width:'25%',marginLeft:'2%',display:'flex',flexDirection:'row',alignItems:'center',alignContent:'center',justifyContent:'center'}}>
-                                    $<input id="amountInput" style={{textAlign:'right',width:'100%',height:'30px',marginLeft:'4%'}} className="input" type="number" placeholder="Enter" ></input>
-                                </div>
-                            </div>
-                            {/* <div className="horizontalFlex" style={{width:'50%'}}>
-                                Select a Budget
-                                <ArrowDropDownIcon style={{width:'50%',display: anchorElB === null ? 'block': 'none'}}onClick={handleMenuOpen}></ArrowDropDownIcon>
-                                <ArrowDropUpIcon style={{width:'50%',display:anchorElB === null ? 'none': 'block'}}onClick={handleMenuClose}></ArrowDropUpIcon>    
-                            </div> */}
-                            <h2 >Category</h2>
-                            <div className='horizontalFlex' style={{columnGap:'3%', height:'100%',width:'80%',marginBottom:'2%'}}>
-                                {
-                                    // catSelect != null ? 
-                                    //     <CatCard  selected={selected} width={'10%'} initialAmount={0} allowInput={false}category={selectedCat}></CatCard>
-                                    //     :
-                                        CATEGORIES.map((category,i)=> 
-                                            <CatCard setSelected={setSelectedCat} isSelected={selectedCat == category ? true : false} width={'10%'} initialAmount={0} key={i} allowInput={false}category={category}></CatCard>
-                                        )
-                                }
-                            </div>   
-                            
-                            {/*Description*/}
-                            <div className="verticalFlex" style={{width:'30%', marginBottom: '1%',height:'100% ',flexWrap:'wrap'}}>
-                                <div style={{width:'50%', marginBottom:'2%'}}>Description: </div>
-                                <input id="descInput" className="input" name="desc" style={{borderRadius:'5px',border:'solid',borderWidth:'.2px',textAlign:'center',width:'50%',height:'70px'}}placeholder='Enter here'></input>
-                            </div>
-                        </div>
-                        <Button className="button" onClick={addTransaction} variant="outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'1%', width:'5%'}}>Save</Button>
+                    <div className='horizontalFlex' style={{width:'30%',height:'15%',justifyContent:'space-between'}}>
+                        <h3 >Date:</h3>
+                        <input id="dateInput" style={{textAlign:'center'}} className="input" type="date" ></input>
                     </div>
-                }
-            </div>
-        
+                    {/*------CATEGORIES------*/}  
+                    <h3 >Category:</h3>
+                    <div className='horizontalFlex' style={{alignItems:'center',columnGap:'1%', height:'150%',width:'100%'}}>
+                    {
+                        // catSelect != null ? 
+                        //     <CatCard  selected={selected} width={'10%'} initialAmount={0} allowInput={false}category={selectedCat}></CatCard>
+                        //     :
+                            CATEGORIES.map((category,i)=> 
+                                <CatCard setSelected={setSelectedCat} isSelected={selectedCat == category ? true : false} width={30} height={60} initialAmount={0} key={i} allowInput={false}category={category}></CatCard>
+                            )
+                    }
+                    </div> 
+
+                    {/*------DESCRIPTION------*/}
+                    <h3 style={{width:'50%', marginBottom:'2%'}}>Description: </h3>
+                    <input id="descInput" className="input" name="desc" style={{borderRadius:'5px',border:'solid',borderWidth:'.2px',textAlign:'center',width:'20%',height:'70px'}}placeholder='Enter here'></input>
+                </div>
+            <Button className="button" onClick={addTransaction} variant="outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'2%', width:'5%'}}>Save</Button>
+        </div>
     )
 }
