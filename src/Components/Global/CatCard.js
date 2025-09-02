@@ -81,7 +81,7 @@ export default function CatCard({category, initialAmount, allowInput, width, hei
         }
     }
     return(
-        <div id={category} style={{width:"20%",height:"20%"}} className="tooltip">
+        <div id={category} style={{display:'flex',flexDirection:'column', alignItems:'center',width:"8%"}} className="tooltip">
             <Button className="button" onClick={handleClick} variant="outlined" style={{backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
                 {icon}
                 {
@@ -96,7 +96,7 @@ export default function CatCard({category, initialAmount, allowInput, width, hei
                     <></>
                 }
             </Button>
-            <span style={{textAlign:'center'}} className='tooltiptext'>{category}</span>
+            <span style={{textAlign:'center',width:'100%'}} className='tooltiptext'>{category}</span>
             {/* {amountText} */}
         </div>
     );

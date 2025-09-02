@@ -69,9 +69,9 @@ export default function Login() {
             <h2>Enter credentials below to login.</h2>
             <div style={{width:'100%',height:'55%'}}>
                 <div className='verticalFlex' style={{height:'55%', alignItems:'center'}}>
-                    <Input style={{width:'15%'}} id="user" name="user" placeholder="Username" required></Input>
-                    <Input style={{width:'15%'}} id="password" name="password" type="password" placeholder="Password" required></Input>
-                    <div style={{height:'60%',width: '100%',visibility: noUser || serverError ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder'}}>
+                    <Input style={{width:'15%', marginBottom:'1%'}} id="user" name="user" placeholder="Username" required></Input>
+                    <Input style={{width:'15%', marginBottom:'1%'}} id="password" name="password" type="password" placeholder="Password" required></Input>
+                    <div style={{marginBottom:'1%',height:'60%',width: '100%',visibility: noUser || serverError ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder'}}>
                         { noUser ? "No such user" : "Server error"}
                     </div>
                     <Button className="button" onClick={loginUser} variant="outlined" style={{marginTop:'0%',fontFamily:'inherit',color:'inherit'}}>Login</Button>

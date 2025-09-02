@@ -4,10 +4,12 @@ import '../../style/components.css';
 
 import Button from '@mui/joy/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Shop } from '@mui/icons-material';
+import { Delete, Shop } from '@mui/icons-material';
 import { BudgetContext } from '../../App.js';
 import { pickIcon } from '../Global/CatCard.js';
 import { getTransactions } from '../../Controllers/TransactionController.js';
+import Modal from '@mui/material/Modal';
+
 const USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -52,38 +54,57 @@ export default function ViewTransactions() {
         let spent = budget.total - budget.remaining;
         let per = spent/budget.total * 100;
         console.log("hi");
-      },[]); 
+    },[]); 
+
+    const deleteTransaction = (trans) => {
+        console.log('hi');
+        // handleOpen();
+    }
+    // const handleOpen = () => setOpen(true);
+    // const handleClose = () => setOpen(false);
     return(
         <div onClick={view} style={{display:'flex', flexDirection:'column', alignItems:'center',width:'100%', height:'100%',rowGap:'5%'}}>
             <h1>{budgetName}</h1>
-            <div className="horizontalFlex" style={{height:'5%',alignItems:'center', justifyContent:'center',width:'60%', columnGap:'0'}}>
-                <div className="tooltip" style={{height:'100%',borderWidth:'.05px',border:'solid',borderRight:'none',backgroundColor:'red',width:`${total-remaining}%`}}>
+            <div className="horizontalFlex" style={{height:'5%',alignItems:'center', justifyContent:'center',width:'60%'}}>
+                <div className="tooltip" style={{borderWidth:'.02px',border:'solid',borderRight:'none',backgroundColor:'red',width:`${total-remaining}%`}}>
                     <span className='tooltiptext'>{Math.round((total-remaining)/total*100)}% Spent</span>
                 </div>
-                <div className='tooltip' style={{height:'100%',borderWidth:'.05px',border:'solid',borderLeft:'none',backgroundColor:'green',width:`${remaining}%`}}>
+                {/* {style={{borderWidth:'.02px',border:'solid',borderLeft:'none',backgroundColor:'green',width:`${remaining}%`}}} */}
+                <div className='tooltip' style={{borderWidth:'.02px',border:'solid',borderRight:'none',backgroundColor:'green',width:`${remaining > 0 ? remaining : 0}%`}}>
                     <span  className='tooltiptext'>{Math.round((remaining/total)*100)}% Remaining</span>
                 </div>
             </div>
             <h3 style={{marginTop:'1%'}}>{USDollar.format(remaining)} Remaining</h3>
             {
                 transactions != undefined && transactions.length > 0? 
-                <div className='verticalFlex' style={{height:'30%', width:'70%'}}>
+                <div className='verticalFlex' style={{height:'30%', width:'100%'}}>
                     <h2>Transactions:</h2>  
-                    <div style={{height:'100%',width:'45%', display:'flex',flexDirection:'column',rowGap:'20%'}}>
-                        {transactions.map((trans) => 
-                            <div style={{display:'flex',flexDirection:'row',alignContent:'center',alignItems:'center',justifyContent:'center',backgroundColor:'rgb(39, 48, 61)',height:'8%'}}>
-                                <div style={{marginRight:'2%'}}>{dateStr(trans.date)}</div>
-                                <div style={{marginRight:'2%'}}>{pickIcon(trans.category)}</div>
-                                <div >{" -" + USDollar.format(trans.amount)}</div>
-                            </div>
-                        )}
+                    <div  style={{height:'100%'}}>
+                        <div className="" style={{marginBottom:'3%',display:'grid',gridTemplateColumns: "repeat(3, 1fr)",alignItems:'center',backgroundColor:'rgb(39, 48, 61)',height:'8%'}}>
+                                <div >Date</div>
+                                <div >Type</div>
+                                <div >Amount</div>
+                        </div>
+                        
+                            {transactions.sort((a, b) => new Date(a.date) - new Date(b.date)).map((trans) => 
+                                <div className='horizontalFlex'>    
+                                    <div className="" style={{width:'100%',marginBottom:'2%',display:'grid',gridTemplateColumns: "repeat(3, 1fr)",alignItems:'center',backgroundColor:'rgb(39, 48, 61)',height:'8%'}}>
+                                        <div >{dateStr(trans.date)}</div>
+                                        <div >{pickIcon(trans.category)}</div>
+                                        <div >{" -" + USDollar.format(trans.amount)}</div>
+                                    </div>
+                                    <div ><Delete onClick={deleteTransaction(trans)}></Delete></div>
+                                </div>
+                            )}
+                        
                     </div>
-                    <h3>Total Spent: {USDollar.format(total - remaining)}</h3>
+                    <h3 style={{marginTop:'1%'}}>Total Spent: {USDollar.format(total - remaining)}</h3>
                 </div>
                 :
                 <h2>No Transactions to Display</h2>
             }
-            <Button className="button" variant="outlined" onClick={()=>navigate("/transactions/add")} style={{fontFamily:'inherit',color:'inherit'}}>Add New Transaction</Button>
+            <Button className="button" variant="outlined" onClick={()=>navigate("/transactions/add")} style={{marginTop:'1%',fontFamily:'inherit',color:'inherit'}}>New Transaction</Button>
+            
         </div>
     );
 }

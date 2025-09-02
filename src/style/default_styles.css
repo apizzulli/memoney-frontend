@@ -1,10 +1,8 @@
 .verticalFlex{
     display: flex;
     flex-direction:column;
-    column-gap: 5;
     justify-content:center;
     align-items: center;
-    row-gap: 5px;
 }
 .horizontalFlex{
     display: flex;
@@ -48,7 +46,6 @@
     border: none;
     outline: none;
     box-sizing: border-box;
-    height: 100%; /* Or a fixed height */
 
     margin-top: 0%;
     margin-bottom: 0%;

@@ -17,8 +17,8 @@
 }
 .App-light {
   text-align: center;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-color: rgb(219, 219, 219);
   color: rgb(57, 97, 126);
 

@@ -74,9 +74,9 @@ export default function ViewBudgets(props){
             categories = Object.keys(budget.categories);
         }
         return(
-            <div className="verticalFlex" style={{backgroundColor:'rgb(146, 159, 178, 0.130)',paddingTop: '3%', paddingBottom: '3%',marginBottom:'4%',width:'25%', borderRadius: '15px',height:'100%'}}>
-                <Stack alignItems="center" direction="row" style={{marginLeft:'7px', cursor:'pointer'}}  ><h2 style={{margin:'0'}}>{budget.name}</h2><ModeEditIcon onClick={()=>goToEdit(budget)} style={{marginLeft:'7px'}} ></ModeEditIcon></Stack>
-                <h2 style={{margin:0}}>{USDollar.format(budget.remaining) + " remaining"}</h2>
+            <div className="verticalFlex" style={{backgroundColor:'rgb(146, 159, 178, 0.130)',paddingTop: '3%', paddingBottom: '3%',marginBottom:'4%',width:'100%', borderRadius: '15px',height:'100%'}}>
+                <Stack alignItems="center" direction="row" style={{marginLeft:'7px', cursor:'pointer'}}  ><h2 style={{margin:'0',marginBottom:'5%'}}>{budget.name}</h2><ModeEditIcon onClick={()=>goToEdit(budget)} style={{marginLeft:'7px'}} ></ModeEditIcon></Stack>
+                <h3 style={{margin:0}}>{USDollar.format(budget.remaining) + " remaining"}</h3>
                     {budget.transactions != undefined && budget.transactions.length > 0 ? 
                         (
                             <div>
@@ -107,14 +107,14 @@ export default function ViewBudgets(props){
       }, []); 
 
     return (
-        <div style={{height:'100vh'}}>
+        <div className="verticalFlex" style={{height:'100%', width:'100%'}}>
             <h1>Your Budgets:</h1>
             {   
                 budgets != undefined ? 
-                <div className="verticalFlex">
+                <div className="verticalFlex" style={{width:'70%'}}>
                     {
                         budgets.map((budget,i) => 
-                            <div key={i} className={"verticalFlex"}>
+                            <div key={i} className="verticalFlex" style={{width:'40%'}}>
                                 {budgetView(budget)}
                             </div>)
                     }
