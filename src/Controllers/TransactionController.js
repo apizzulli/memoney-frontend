@@ -41,3 +41,24 @@ export async function getTransactions(budgetId){
     });
 }
 
+export async function deleteTransaction(transId){
+    let token = localStorage.getItem("jwt");
+    return fetch(`http://localhost:8080/transactions/delete/${transId}`,
+    {
+        headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": `Bearer ${token}`,
+            "Accept":"application/json",
+            "Content-Type":"application/json",
+    },
+        method: "POST"
+    })
+    .then((response) => {
+        console.log("Deleting transaction...");
+        return response.json()
+    })
+    .catch((error)=> {
+        console.log("error = "+error);
+        return 0;
+    });
+}

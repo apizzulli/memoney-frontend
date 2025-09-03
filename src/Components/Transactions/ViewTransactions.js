@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Delete, Shop } from '@mui/icons-material';
 import { BudgetContext } from '../../App.js';
 import { pickIcon } from '../Global/CatCard.js';
-import { getTransactions } from '../../Controllers/TransactionController.js';
+import { getTransactions, deleteTransaction } from '../../Controllers/TransactionController.js';
 import Modal from '@mui/material/Modal';
 
 const USDollar = new Intl.NumberFormat('en-US', {
@@ -63,9 +63,10 @@ export default function ViewTransactions() {
         setOpen(true);
     }
 
-    function deleteTransaction(){ 
+    async function deleteTransaction(){ 
+        let result = await deleteTransaction(toDelete.id);
         setOpen(false);
-        
+        navigate("/transactions/view");
         // handleOpen();
     }
     return(
