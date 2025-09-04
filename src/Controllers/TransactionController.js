@@ -41,9 +41,10 @@ export async function getTransactions(budgetId){
     });
 }
 
-export async function deleteTransaction(transId){
+export async function deleteTransaction(transId, budgId){
+    let id = transId + "-" + budgId;
     let token = localStorage.getItem("jwt");
-    return fetch(`http://localhost:8080/transactions/delete/${transId}`,
+    return fetch(`http://localhost:8080/transactions/delete/${id}`,
     {
         headers: {
             "Access-Control-Allow-Origin" : "*",

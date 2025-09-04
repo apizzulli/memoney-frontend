@@ -63,10 +63,18 @@ export default function ViewTransactions() {
         setOpen(true);
     }
 
-    async function deleteTransaction(){ 
-        let result = await deleteTransaction(toDelete.id);
+    async function deleteT(){ 
+        let budgId = JSON.parse(localStorage.getItem("selectedBudget")).id;
+        let result = await deleteTransaction(toDelete.id, budgId);
+        if(result.status != "204"){
+            console.log("Error deleting transaction");
+            setOpen(false);
+            return;
+        }
         setOpen(false);
         navigate("/transactions/view");
+        localStorage.setItem("selectedBudget", JSON.parse(result));
+        return;
         // handleOpen();
     }
     return(
@@ -122,7 +130,7 @@ export default function ViewTransactions() {
                             <div className='verticalFlex' style={{fontSize:'xxl',height:'100%', width:'100%', marginLeft:'auto',marginRight:'auto',color:'white'}}>
                                 <span style={{textAlign:'center'}}>Are you sure you want to delete this transaction?</span>
                                 <div className='horizontalFlex' style={{marginTop:'5%',columnGap:'10%', color:'white'}}>
-                                    <Button onClick={deleteTransaction} variant='outlined' className='button' style={{color:'inherit'}}>Yes</Button>
+                                    <Button onClick={deleteT} variant='outlined' className='button' style={{color:'inherit'}}>Yes</Button>
                                     <Button onClick={()=>setOpen(false)} variant='outlined' className='button' style={{color:'inherit'}}>No</Button>
                                 </div>
                             </div>
