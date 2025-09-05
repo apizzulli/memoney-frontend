@@ -55,11 +55,10 @@ export async function deleteTransaction(transId, budgId){
         method: "POST"
     })
     .then((response) => {
-        console.log("Deleting transaction...");
         return response.json()
     })
     .catch((error)=> {
-        console.log("error = "+error);
+        console.log("DELETE error = "+error);
         return 0;
     });
 }

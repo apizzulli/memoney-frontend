@@ -20,6 +20,7 @@ export default function ViewTransactions() {
     const { lightMode } = useContext(BudgetContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const [ selectedBudget, setSelectedBudget ] = useState(JSON.parse(localStorage.getItem("selectedBudget")));
     const [ transactions, setTransactions ] = useState(JSON.parse(localStorage.getItem("selectedBudget")).transactions);//);.sort((a, b) => new Date(a.date) - new Date(b.date));
     const [ remainingVals, setRemainingVals ] = useState(JSON.parse(localStorage.getItem("remainingVals")));
     const budgetName = useState(JSON.parse(localStorage.getItem("selectedBudget")).name);
@@ -66,33 +67,37 @@ export default function ViewTransactions() {
     async function deleteT(){ 
         let budgId = JSON.parse(localStorage.getItem("selectedBudget")).id;
         let result = await deleteTransaction(toDelete.id, budgId);
-        if(result.status != "204"){
-            console.log("Error deleting transaction");
-            setOpen(false);
-            return;
-        }
+        // if(result.status != "204"){
+        //     console.log("Error deleting transaction");
+        //     setOpen(false);
+        //     return;
+        // }
+        let newBudgets = result;
+        localStorage.setItem("budgets", JSON.stringify(newBudgets));
+        localStorage.setItem("selectedBudget",JSON.stringify((newBudgets.find(bud=> bud.id === budgId))));
         setOpen(false);
-        navigate("/transactions/view");
-        localStorage.setItem("selectedBudget", JSON.parse(result));
+        // window.location.reload(false);
+        setSelectedBudget(newBudgets.find(bud=> bud.id === budgId));
+        navigate("/transactions");
         return;
         // handleOpen();
     }
     return(
         <div>
             <div onClick={view} style={{display:'flex', flexDirection:'column', alignItems:'center',width:'100%', height:'100%',rowGap:'5%'}}>
-                <h1>{budgetName}</h1>
+                <h1>{selectedBudget.name}</h1>
                 <div className="horizontalFlex" style={{height:'5%',alignItems:'center', justifyContent:'center',width:'60%'}}>
-                    <div className="tooltip" style={{borderWidth:'.02px',border:'solid',borderRight:'none',backgroundColor:'red',width:`${total-remaining}%`}}>
-                        <span className='tooltiptext'>{Math.round((total-remaining)/total*100)}% Spent</span>
+                    <div className="tooltip" style={{borderWidth:'.02px',border:'solid',borderRight:'none',backgroundColor:'red',width:`${selectedBudget.spent}%`}}>
+                        <span className='tooltiptext'>{Math.round((selectedBudget.spent)/selectedBudget.total*100)}% Spent</span>
                     </div>
                     {/* {style={{borderWidth:'.02px',border:'solid',borderLeft:'none',backgroundColor:'green',width:`${remaining}%`}}} */}
-                    <div className='tooltip' style={{borderWidth:'.02px',border:'solid',borderRight:'none',backgroundColor:'green',width:`${remaining > 0 ? remaining : 0}%`}}>
-                        <span  className='tooltiptext'>{Math.round((remaining/total)*100)}% Remaining</span>
+                    <div className='tooltip' style={{borderWidth:'.02px',border:'solid',borderRight:'none',backgroundColor:'green',width:`${selectedBudget.total-selectedBudget.spent > 0 ? selectedBudget.total-selectedBudget.spent : 0}%`}}>
+                        <span  className='tooltiptext'>{Math.round((selectedBudget.total-selectedBudget.spent)*100)}% Remaining</span>
                     </div>
                 </div>
-                <h3 style={{marginTop:'1%'}}>{USDollar.format(remaining)} Remaining</h3>
+                <h3 style={{marginTop:'1%'}}>{USDollar.format(selectedBudget.total-selectedBudget.spent)} Remaining</h3>
                 {
-                    transactions != undefined && transactions.length > 0? 
+                    selectedBudget.transactions != undefined && selectedBudget.transactions.length > 0? 
                     <div className='verticalFlex' style={{height:'30%', width:'100%'}}>
                         <h2>Transactions:</h2>  
                         <div  style={{height:'100%'}}>
@@ -102,7 +107,7 @@ export default function ViewTransactions() {
                                     <div >Amount</div>
                             </div>
                             
-                                {transactions.sort((a, b) => new Date(a.date) - new Date(b.date)).map((trans) => 
+                                {selectedBudget.transactions.sort((a, b) => new Date(a.date) - new Date(b.date)).map((trans) => 
                                     <div className='horizontalFlex'>    
                                         <div className="" style={{width:'100%',marginBottom:'2%',display:'grid',gridTemplateColumns: "repeat(3, 1fr)",alignItems:'center',backgroundColor:'rgb(39, 48, 61)',height:'8%'}}>
                                             <div >{dateStr(trans.date)}</div>
@@ -114,7 +119,7 @@ export default function ViewTransactions() {
                                 )}
                             
                         </div>
-                        <h3 style={{marginTop:'1%'}}>Total Spent: {USDollar.format(total - remaining)}</h3>
+                        <h3 style={{marginTop:'1%'}}>Total Spent: {USDollar.format(selectedBudget.spent)}</h3>
                     </div>
                     :
                     <h2>No Transactions to Display</h2>
