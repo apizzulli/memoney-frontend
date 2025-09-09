@@ -1,5 +1,6 @@
 import { useState,useContext, useEffect } from 'react';
 import '../../style/default_styles.css';
+import '../../style/transaction.css';
 import '../../style/components.css';
 
 import Button from '@mui/joy/Button';
@@ -91,38 +92,39 @@ export default function ViewTransactions() {
                         <span className='tooltiptext'>{Math.round((selectedBudget.spent)/selectedBudget.total*100)}% Spent</span>
                     </div>
                     {/* {style={{borderWidth:'.02px',border:'solid',borderLeft:'none',backgroundColor:'green',width:`${remaining}%`}}} */}
-                    <div className='tooltip' style={{borderWidth:'.02px',border:'solid',borderRight:'none',backgroundColor:'green',width:`${selectedBudget.total-selectedBudget.spent > 0 ? selectedBudget.total-selectedBudget.spent : 0}%`}}>
-                        <span  className='tooltiptext'>{Math.round((selectedBudget.total-selectedBudget.spent)*100)}% Remaining</span>
+                    <div className='tooltip' style={{borderWidth:'.02px',border:'solid',backgroundColor:'green',width:`${selectedBudget.total-selectedBudget.spent > 0 ? selectedBudget.total-selectedBudget.spent : 0}%`}}>
+                        <span  className='tooltiptext'>{Math.round((selectedBudget.total-selectedBudget.spent)/selectedBudget.total*100)}% Remaining</span>
                     </div>
                 </div>
                 <h3 style={{marginTop:'1%'}}>{USDollar.format(selectedBudget.total-selectedBudget.spent)} Remaining</h3>
                 {
-                    selectedBudget.transactions != undefined && selectedBudget.transactions.length > 0? 
-                    <div className='verticalFlex' style={{height:'30%', width:'100%'}}>
-                        <h2>Transactions:</h2>  
-                        <div  style={{height:'100%'}}>
-                            <div className="" style={{marginBottom:'3%',display:'grid',gridTemplateColumns: "repeat(3, 1fr)",alignItems:'center',backgroundColor:'rgb(39, 48, 61)',height:'8%'}}>
+                    selectedBudget.transactions != undefined && selectedBudget.transactions.length > 0 ? 
+                        <div className='verticalFlex' style={{height:'30%', width:'100%'}}>
+                            <h2>Transactions:</h2>  
+                            <div  className="tx-table" style={{height:'100%',width:'30%'}}>
+                                <div className="tx-row tx-row--head">
                                     <div >Date</div>
                                     <div >Type</div>
                                     <div >Amount</div>
-                            </div>
+                                    <div>Description</div>
+                                    <div></div>
+                                </div>
                             
                                 {selectedBudget.transactions.sort((a, b) => new Date(a.date) - new Date(b.date)).map((trans) => 
-                                    <div className='horizontalFlex'>    
-                                        <div className="" style={{width:'100%',marginBottom:'2%',display:'grid',gridTemplateColumns: "repeat(3, 1fr)",alignItems:'center',backgroundColor:'rgb(39, 48, 61)',height:'8%'}}>
+                                // <div className='horizontalFlex' style={{width:'100%'}} >    
+                                    <div  className="tx-row" >
                                             <div >{dateStr(trans.date)}</div>
                                             <div >{pickIcon(trans.category)}</div>
                                             <div >{" -" + USDollar.format(trans.amount)}</div>
-                                        </div>
-                                        <div ><Delete onClick={()=>showDelete(trans)}></Delete></div>
-                                    </div>
-                                )}
-                            
+                                            <div>{trans.description == "" ? "-" : trans.description}</div>
+                                            <div className='tx-action' ><Delete onClick={()=>showDelete(trans)}></Delete></div>
+                                   </div>
+                            )}
+                            </div>
+                            <h3 style={{marginTop:'1%'}}>Total Spent: {USDollar.format(selectedBudget.spent)}</h3>
                         </div>
-                        <h3 style={{marginTop:'1%'}}>Total Spent: {USDollar.format(selectedBudget.spent)}</h3>
-                    </div>
                     :
-                    <h2>No Transactions to Display</h2>
+                        <h2>No Transactions to Display</h2>
                 }
                 <Button className="button" variant="outlined" onClick={()=>navigate("/transactions/add")} style={{marginTop:'1%',fontFamily:'inherit',color:'inherit'}}>New Transaction</Button>
             </div>

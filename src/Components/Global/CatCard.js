@@ -90,7 +90,7 @@ export default function CatCard({category, initialAmount, allowInput, width, hei
                         inputs()
                         :
                         <div style={{width:'100%', height:'100%',marginRight:'0%',marginLeft:'0%'}} >
-                            <span style={{textAlign:'center',width:'100%'}} >${amount}</span>
+                            <span style={{color:'rgb(57, 97, 126)',textAlign:'center',width:'100%'}} >${amount}</span>
                         </div>
                     :
                     <></>
