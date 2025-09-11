@@ -19,19 +19,19 @@ export const pickIcon = (category) => {
     switch(category){
         case "Groceries":
         case "Grocery":
-            icon = <ShoppingCartIcon  style={{color:'white',fontSize:'30pt'}}></ShoppingCartIcon>;    
+            icon = <ShoppingCartIcon  style={{color:'white',fontSize:'40pt'}}></ShoppingCartIcon>;    
             break;
         case "Internet":
-            icon = <WifiIcon  style={{color:'white',fontSize:'30pt'}}></WifiIcon>;
+            icon = <WifiIcon  style={{color:'white',fontSize:'40pt'}}></WifiIcon>;
             break;
         case "Savings":
-            icon = <SavingsIcon  style={{color:'white',fontSize:'30pt'}}></SavingsIcon>;
+            icon = <SavingsIcon  style={{color:'white',fontSize:'40pt'}}></SavingsIcon>;
             break;
         case "Phone":
-            icon = <LocalPhoneIcon  style={{color:'white',fontSize:'30pt'}}></LocalPhoneIcon>;
+            icon = <LocalPhoneIcon  style={{color:'white',fontSize:'40pt'}}></LocalPhoneIcon>;
             break;
         case "Discretionary":
-            icon = <LocalAtmIcon  style={{color:'white',fontSize:'30pt'}}></LocalAtmIcon>;
+            icon = <LocalAtmIcon  style={{color:'white',fontSize:'40pt'}}></LocalAtmIcon>;
             break;
         default:
             break;
@@ -67,9 +67,9 @@ export default function CatCard({category, initialAmount, allowInput, width, hei
     }
     const inputs = () =>{
         return (
-            <div style={{display:'flex',flexDirection:'row'}}>
-                <input onKeyDown={h} style={{width:'100%',textAlign:'center'}} className="input" id={category+"Input"} type="number" placeholder="Amount"></input>
-                <CheckCircleIcon fontSize="small" onClick={set}></CheckCircleIcon>
+            <div style={{marginTop:'4%',display:'flex',flexDirection:'row', alignItems:'center',justifyContent:'center',justifyItems:'center',alignContent:'center',fontSize:'15pt'}}>
+                <input onKeyDown={h} style={{width:'35%',textAlign:'center'}} className="input" id={category+"Input"} type="number" placeholder="Amount"></input>
+                <CheckCircleIcon style={{}} fontSize="small" onClick={set}></CheckCircleIcon>
             </div>
         );
     }
@@ -81,22 +81,20 @@ export default function CatCard({category, initialAmount, allowInput, width, hei
         }
     }
     return(
-        <div id={category} style={{display:'flex',flexDirection:'column', alignItems:'center',width:"8%"}} className="tooltip">
-            <Button className="button" onClick={handleClick} variant="outlined" style={{backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
+        <div id={category} style={{justifyContent:'center',alignItems:'center',display:'flex',flexDirection:'column', alignItems:'center',width:"15%",height:'100%'}} className="tooltip">
+            <Button className="button" onClick={handleClick} variant="outlined" style={{marginBottom:'2%',backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
                 {icon}
                 {
                     allowInput ? 
                         amountInput ? 
                         inputs()
                         :
-                        <div style={{width:'100%', height:'100%',marginRight:'0%',marginLeft:'0%'}} >
-                            <span style={{color:'rgb(57, 97, 126)',textAlign:'center',width:'100%'}} >${amount}</span>
-                        </div>
+                        <span style={{fontSize:'15pt',marginTop:'4%',textAlign:'center',width:'100%',paddingRight:'1%'}} >${amount}</span>
                     :
                     <></>
                 }
             </Button>
-            <span style={{textAlign:'center',width:'100%'}} className='tooltiptext'>{category}</span>
+            <span style={{marginTop:'4%',textAlign:'center',width:'100%'}} className='tooltiptext'>{category}</span>
             {/* {amountText} */}
         </div>
     );

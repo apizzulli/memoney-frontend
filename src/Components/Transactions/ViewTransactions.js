@@ -102,7 +102,7 @@ export default function ViewTransactions() {
                         <div className='verticalFlex' style={{height:'30%', width:'100%'}}>
                             <h2>Transactions:</h2>  
                             <div  className="tx-table" style={{height:'100%',width:'30%'}}>
-                                <div className="tx-row tx-row--head">
+                                <div className="tx-row tx-row--head" style={{marginBottom:'3%'}}>
                                     <div >Date</div>
                                     <div >Type</div>
                                     <div >Amount</div>
