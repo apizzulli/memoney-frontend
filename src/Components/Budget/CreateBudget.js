@@ -83,28 +83,28 @@ export default function CreateBudget(){
         console.log('hi');
     }
     return(
-        <div className="verticalFlex" style={{width: '100vw'}}>
-            <h1>New Budget</h1>
-            <div className="verticalFlex" style={{width:'60%', height:'60%'}}>
-                <div className='horizontalFlex' style={{gap:'5%',height:'15%'}}>
-                    <Input id="nameInput" name="budgetName" sx={{width: 200}} placeholder="Budget Name" required></Input>
-                    <Input id="totalInput" name="total" sx={{width: 200}} placeholder="Total" required></Input>
-                </div>
-                <h2 style={{marginTop:'4%'}}>Categories</h2>
-                <div className='horizontalFlex' style={{columnGap:'3%', height:'100%',width:'80%'}}>
-                    {
-                        /*/
-                            {Object.keys(CATEGORIES).map((name,i)=><MenuItem id="menuItem" onClick={()=>menuClick(CATEGORIES[name])}>
-                                {CATEGORIES[name]}</MenuItem>
-                        )}*/
-                        CATEGORIES.map((category,i)=> 
-                            <CatCard allowInput={true} initialAmount={0} key={i} category={category}></CatCard>
-                        )
-                    }
-                    <span style={{}}>New <AddCircleIcon style={{paddingLeft:'5%',fontSize:'10pt'}}></AddCircleIcon></span>
-                </div>               
-                <Button onClick={createBudget} variant="outlined" style={{color:'white',fontFamily:'inherit'}} >Save<SaveAltIcon  style={{fontSize:'15pt',marginLeft:'8%',hover:'cursor'}}></SaveAltIcon></Button> 
+        <div style={{width: '100vw',height:'100vh', display:'flex', flexDirection:'column', alignItems:'center'}}>
+            <h1 style={{marginTop:'3%'}}>New Budget</h1>
+            <div className='horizontalFlex' style={{gap:'5%',height:'15%'}}>
+                <Input id="nameInput" name="budgetName" sx={{width: 200}} placeholder="Budget Name" required></Input>
+                <Input id="totalInput" name="total" sx={{width: 200}} placeholder="Total" required></Input>
             </div>
+            <h2 style={{marginBottom:'2%'}}>Categories</h2>
+            <div className='horizontalFlex' style={{columnGap:'3%', height:'20%',width:'80%'}}>
+                {
+                    /*/
+                        {Object.keys(CATEGORIES).map((name,i)=><MenuItem id="menuItem" onClick={()=>menuClick(CATEGORIES[name])}>
+                            {CATEGORIES[name]}</MenuItem>
+                    )}*/
+                    CATEGORIES.map((category,i)=> 
+                        <CatCard allowInput={true} initialAmount={0} key={i} category={category}></CatCard>
+                    )
+                }
+            </div>  
+            <Button onClick={createBudget} variant="outlined" style={{marginTop:'2%',justifyContent:'center',alignItems:'center',display:'flex',padding:'1%',width:'6%',height:'5%',fontSize:'18pt',color:'white',fontFamily:'inherit'}} >
+                <span>Save</span>
+                {/* <SaveAltIcon  style={{paddingLeft:'3%',fontSize:'20pt',hover:'cursor'}}></SaveAltIcon> */}
+            </Button> 
             <h3 style={{visibility: serverFail ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder', fontSize:'xxl', marginTop:'2%'}}>Server error, please try again</h3>
         </div>
     );

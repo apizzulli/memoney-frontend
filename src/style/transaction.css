@@ -1,0 +1,24 @@
+/* center the whole table on the page */
+.tx-table {
+    display: grid;
+    row-gap: 8px;
+    justify-content: center;       /* centers the grid block */
+  }
+  
+  /* one simple grid: 4 data cols + narrow action col */
+  .tx-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(120px, auto)) 28px;
+    column-gap: 24px;
+    align-items: center;
+    text-align: center;             /* centers each data cell */
+  }
+  
+  .tx-row--head { font-weight: 600; }
+  
+  .tx-action {
+    justify-self: end;              /* shove the icon to the right edge of col 5 */
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }

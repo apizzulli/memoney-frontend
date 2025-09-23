@@ -41,3 +41,24 @@ export async function getTransactions(budgetId){
     });
 }
 
+export async function deleteTransaction(transId, budgId){
+    let id = transId + "-" + budgId;
+    let token = localStorage.getItem("jwt");
+    return fetch(`http://localhost:8080/transactions/delete/${id}`,
+    {
+        headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": `Bearer ${token}`,
+            "Accept":"application/json",
+            "Content-Type":"application/json",
+    },
+        method: "POST"
+    })
+    .then((response) => {
+        return response.json()
+    })
+    .catch((error)=> {
+        console.log("DELETE error = "+error);
+        return 0;
+    });
+}
