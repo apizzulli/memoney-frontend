@@ -110,7 +110,7 @@ export default function Transactions() {
     }
     function handleMenuClose(){}
     return(
-            <div className="verticalFlex" style={{height:'20%',width:'100%', marginTop:'2%'}}>   
+            <div className="verticalFlex" style={{height:'20%',width:'100%', marginTop:'1%'}}>   
                 <div className="verticalFlex" style={{width:'70vw'}}>
                     <h1 style={{marginTop:'0'}}>New Transaction</h1>
                     <h2>{budget.name}</h2>

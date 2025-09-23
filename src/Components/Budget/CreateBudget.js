@@ -90,7 +90,7 @@ export default function CreateBudget(){
                 <Input id="totalInput" name="total" sx={{width: 200}} placeholder="Total" required></Input>
             </div>
             <h2 style={{marginBottom:'2%'}}>Categories</h2>
-            <div className='horizontalFlex' style={{columnGap:'3%', height:'15%',width:'80%'}}>
+            <div className='horizontalFlex' style={{columnGap:'3%', height:'20%',width:'80%'}}>
                 {
                     /*/
                         {Object.keys(CATEGORIES).map((name,i)=><MenuItem id="menuItem" onClick={()=>menuClick(CATEGORIES[name])}>
@@ -100,8 +100,11 @@ export default function CreateBudget(){
                         <CatCard allowInput={true} initialAmount={0} key={i} category={category}></CatCard>
                     )
                 }
-            </div>               
-            <Button onClick={createBudget} variant="outlined" style={{marginTop:'3%',color:'white',fontFamily:'inherit'}} >Save<SaveAltIcon  style={{fontSize:'15pt',marginLeft:'8%',hover:'cursor'}}></SaveAltIcon></Button> 
+            </div>  
+            <Button onClick={createBudget} variant="outlined" style={{marginTop:'2%',justifyContent:'center',alignItems:'center',display:'flex',padding:'1%',width:'6%',height:'5%',fontSize:'18pt',color:'white',fontFamily:'inherit'}} >
+                <span>Save</span>
+                {/* <SaveAltIcon  style={{paddingLeft:'3%',fontSize:'20pt',hover:'cursor'}}></SaveAltIcon> */}
+            </Button> 
             <h3 style={{visibility: serverFail ? "visible" : "hidden", color:"#f55656", fontWeight:'bolder', fontSize:'xxl', marginTop:'2%'}}>Server error, please try again</h3>
         </div>
     );

@@ -68,8 +68,8 @@ export default function CatCard({category, initialAmount, allowInput, width, hei
     const inputs = () =>{
         return (
             <div style={{marginTop:'4%',display:'flex',flexDirection:'row', alignItems:'center',justifyContent:'center',justifyItems:'center',alignContent:'center',fontSize:'15pt'}}>
-                <input onKeyDown={h} style={{width:'35%',textAlign:'center'}} className="input" id={category+"Input"} type="number" placeholder="Amount"></input>
-                <CheckCircleIcon style={{}} fontSize="small" onClick={set}></CheckCircleIcon>
+                <input onKeyDown={h} style={{paddingLeft:'2%',width:'40%',textAlign:'center'}} className="input" id={category+"Input"} type="number" placeholder="Amount"></input>
+                <CheckCircleIcon style={{paddingLeft:'3%'}} fontSize="small" onClick={set}></CheckCircleIcon>
             </div>
         );
     }
@@ -82,7 +82,7 @@ export default function CatCard({category, initialAmount, allowInput, width, hei
     }
     return(
         <div id={category} style={{justifyContent:'center',alignItems:'center',display:'flex',flexDirection:'column', alignItems:'center',width:"15%",height:'100%'}} className="tooltip">
-            <Button className="button" onClick={handleClick} variant="outlined" style={{marginBottom:'2%',backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
+            <Button className="button" onClick={handleClick} variant="outlined" style={{paddingTop:'4%',marginBottom:'2%',backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
                 {icon}
                 {
                     allowInput ? 
