@@ -46,7 +46,6 @@
   },
   "devDependencies": {
     "i": "^0.3.7",
-    "npm": "^10.8.2",
-    "react-router-dom": "^6.24.1"
+    "npm": "^10.8.2"
   }
 }
