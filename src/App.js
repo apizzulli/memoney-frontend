@@ -11,9 +11,9 @@ import CreateBudget from './Components/Budget/CreateBudget.js';
 import ViewBudgets from './Components/Budget/ViewBudgets.js';
 import EditBudget from './Components/Budget/EditBudget.js';
 import BudgetDetails from './Components/Budget/BudgetDetails.js';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router';
 import { createContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { jwtDecode } from 'jwt-decode';
 export const BudgetContext = createContext();      
 

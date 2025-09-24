@@ -8,7 +8,7 @@ import '../../style/budget_style.css';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { newBudget } from '../../Controllers/BudgetController.js';
 import { BudgetContext } from '../../App.js';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';

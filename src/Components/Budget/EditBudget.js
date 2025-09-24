@@ -4,7 +4,7 @@ import '../../style/budget_style.css';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useContext, useState, useEffect } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router';
 import { editBudget } from '../../Controllers/BudgetController.js'; 
 import CatCard from '../Global/CatCard';
 

@@ -1,7 +1,7 @@
 import Button from '@mui/joy/Button';
 import Input from '@mui/joy/Input';
 import {useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router'; 
 import { useContext } from 'react';
 import { BudgetContext } from '../App.js';
 import Login from '../Components/User/Login';

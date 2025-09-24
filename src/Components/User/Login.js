@@ -6,8 +6,8 @@ import {
     BrowserRouter,
     Routes,
     Route,
-} from "react-router-dom";
-import { useNavigate } from 'react-router-dom'; 
+} from "react-router";
+import { useNavigate } from 'react-router'; 
 import { useContext } from 'react';
 import { BudgetContext } from '../../App.js';
 

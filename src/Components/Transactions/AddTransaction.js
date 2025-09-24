@@ -9,7 +9,7 @@ import { createTransaction } from '../../Controllers/TransactionController.js';
 import { useState, useContext, useEffect } from 'react';
 import { BudgetContext } from '../../App.js';
 import CatCard from '../Global/CatCard.js';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import BudgetDetails from '../Budget/BudgetDetails.js';
 /*

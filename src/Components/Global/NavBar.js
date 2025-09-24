@@ -2,7 +2,7 @@ import "../../style/navbar_style.css";
 import "../../style/App.css";
 
 import Button from '@mui/joy/Button';
-import { Outlet, Link, Navigate, useNavigate } from "react-router-dom";
+import { Outlet, Link, Navigate, useNavigate } from "react-router";
 import { useState, useContext } from 'react';
 import Menu, { MenuPaper } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';

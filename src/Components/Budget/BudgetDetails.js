@@ -1,6 +1,6 @@
 import { CategoryRounded } from '@mui/icons-material';
 import Button from '@mui/joy/Button';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router';
 
 export default function BudgetDetails({budget}) {
     

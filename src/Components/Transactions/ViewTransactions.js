@@ -4,7 +4,7 @@ import '../../style/transaction.css';
 import '../../style/components.css';
 
 import Button from '@mui/joy/Button';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router';
 import { Delete, Shop } from '@mui/icons-material';
 import { BudgetContext } from '../../App.js';
 import { pickIcon } from '../Global/CatCard.js';
