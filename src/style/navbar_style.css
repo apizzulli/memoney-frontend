@@ -32,3 +32,47 @@ a{
     color: white;
     text-decoration: none;
 }
+.action-buttons{
+    display:flex;
+    justify-content: center;
+    margin-right: 15px;
+    align-items: center;
+}
+@media screen and (max-width: 768px) {
+    /* CSS rules to apply when the screen width is 768px or less */
+    .colorSet{
+        display:none;
+    }
+    .title{
+        display:none;
+    }
+    .main-container{
+        justify-content: center;
+        align-items: center;
+    }
+    /* .main-container{
+        flex-direction: column;
+    } */
+  }
+@media screen and (min-width: 525px) {
+    /* CSS rules to apply when the screen width is 525px or more */
+    .colorSet{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-right:10%;
+    }
+  }
+
+.main-container{
+    width: 100vw;
+    height: 5%;
+    border-bottom: .02rem solid;
+    justify-content: space-between;
+    display: flex;
+}
+.nav-buttons{
+    display: flex;
+    align-items: center;
+}

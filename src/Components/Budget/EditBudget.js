@@ -148,15 +148,15 @@ export default function EditBudget(){
     }
     const nameDisplay = 
         <div style={{width:'100%'}}>
-            <div className='horizontalFlex' style={{width:'100%',justifyContent:'space-between'}}>
+            <div className='horizontal-flex' style={{width:'100%',justifyContent:'space-between'}}>
                 <h2 >Name:</h2>
                 {editName && !editTotal ? 
-                    <div className='horizontalFlex'>
+                    <div className='horizontal-flex'>
                         <Input id="nameInput" defaultValue={currentName} name="budgetName" sx={{width: 200}} placeholder="Budget Name" required></Input>
                         <Button className="button" onClick={nameDone} variant="outlined" style={{fontFamily:'inherit',color:'inherit',marginLeft:'6pt'}}>Done</Button>
                     </div>
                     :
-                    <div className='horizontalFlex'>
+                    <div className='horizontal-flex'>
                         <div style={{fontSize:'15pt'}}>{currentName}</div>
                         <ModeEditIcon onClick={()=>setEditName(true)} style={{fontSize:'18pt', marginLeft:'6pt'}}></ModeEditIcon>
                     </div>
@@ -165,16 +165,16 @@ export default function EditBudget(){
         </div>
     const totalDisplay = 
                 <div style={{width:'100%'}}>
-                    <div className='horizontalFlex' style={{width:'100%',justifyContent:'space-between'}}>
+                    <div className='horizontal-flex' style={{width:'100%',justifyContent:'space-between'}}>
                         <h2 >Total:</h2>
                         {
                             editTotal && !editName  ?
-                            <div className='horizontalFlex'>
+                            <div className='horizontal-flex'>
                                 <Input id="totalInput" defaultValue={currentTotal} name="budgetName" sx={{width: 100}} placeholder="Budget Total" required></Input>
                                 <Button className="button" onClick={totalDone} variant="outlined" style={{fontFamily:'inherit',color:'inherit',marginLeft:'6pt'}}>Done</Button>
                             </div>
                             :
-                            <div className='horizontalFlex'>
+                            <div className='horizontal-flex'>
                                 <div style={{fontSize:'15pt'}}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentTotal)}</div>
                                 <ModeEditIcon onClick={()=>setEditTotal(true)} style={{display:'inline',fontSize:'18pt', marginLeft:'6pt',marginTop:'3pt'}}></ModeEditIcon>
                             </div>
@@ -183,10 +183,10 @@ export default function EditBudget(){
                 </div>
     
     return(
-        <div  className='verticalFlex' style={{marginLeft:'auto',marginRight:'auto',width: '20%', alignItems:'center',justifyContent:'center'}}>
+        <div  className='vertical-flex' style={{marginLeft:'auto',marginRight:'auto',width: '20%', alignItems:'center',justifyContent:'center'}}>
             {nameDisplay}
             {totalDisplay}
-            <div className='horizontalFlex' style={{ height:'45%',width:'50%'}}>
+            <div className='horizontal-flex' style={{ height:'45%',width:'50%'}}>
                     {
                         Object.keys(currentCategories).map((name,i)=> 
                             <CatCard allowInput={true} initialAmount={currentCategories[name]} key={i} category={name}></CatCard>

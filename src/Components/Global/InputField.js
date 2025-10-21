@@ -19,7 +19,7 @@ export default function InputField(name, amount){
 
     return (
         <div style={{width:'100%', height:'100%'}} >
-            <div style={{height:'100%', columnGap:'0%',rowGap:'0%',flexWrap:'nowrap'}} className='horizontalFlex'>
+            <div style={{height:'100%', columnGap:'0%',rowGap:'0%',flexWrap:'nowrap'}} className='horizontal-flex'>
                 <input style={{width:'55%',marginLeft:"0%"}} className="input" id={name+"Input"} text="$" placeholder="Amount"></input>
                 <CheckCircleIcon style={{width:'10%',height:'100%',marginLeft:"5%"}} onClick={set}></CheckCircleIcon>
                 <span >${amount}</span>

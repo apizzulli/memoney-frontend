@@ -25,7 +25,7 @@ export default function HomeScreen() {
     //     }
     //   }, []); 
     return(
-        <div className='verticalFlex' style={{marginTop:'2%', width:'100%',height:'100%'}}>
+        <div className='vertical-flex' style={{marginTop:'2%', width:'100%',height:'100%'}}>
             <h1 style={{margin: 0}}>Welcome to Budgeter</h1>
             { 
                 !loggedIn ? 
@@ -35,7 +35,7 @@ export default function HomeScreen() {
                     </div>
                 )
                 :
-                (<div className='verticalFlex' style={{backgroundColor:'iherit',marginTop:'2%', height:'100%'}}>
+                (<div className='vertical-flex' style={{backgroundColor:'iherit',marginTop:'2%', height:'100%'}}>
                     <Button className="button" onClick={()=>{navigate("/budgets/view")}} size='lg' variant='outlined' style={{fontFamily:'inherit',color:'inherit', marginBottom:'7%'}}>View Budgets</Button>
                     <Button className="button" onClick={()=>{navigate("/budgets/create")}} size='lg' variant='outlined'style={{fontFamily:'inherit',color:'inherit', marginBottom:'7%'}}>Create New Budget</Button>
                     <Button className="button" onClick={()=>{navigate("/transactions/add")}} size='lg' variant='outlined'style={{fontFamily:'inherit',color:'inherit'}}>Log a transaction</Button>
