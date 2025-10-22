@@ -1,5 +1,5 @@
 export async function newUser(userDTO) {
-    return fetch('http://localhost:8080/user/createAccount',
+    return fetch(process.env.REACT_APP_BACKEND_URL + '/user/createAccount',
         {
             headers: {
             "Accept":"application/json",
@@ -46,7 +46,7 @@ export async function login (userDTO) {
     //});
 }
 export async function email() {
-    return fetch('http://localhost:8080/user/testEmail',
+    return fetch(process.env.REACT_APP_BACKEND_URL + '/user/testEmail',
         {
             headers: {
                 "Access-Control-Allow-Origin" : "*",
