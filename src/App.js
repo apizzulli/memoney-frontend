@@ -48,6 +48,7 @@ function App() {
             <NavBar></NavBar> 
             <Routes>
               <Route path = "/" element = {<HomeScreen/>}></Route>
+              <Route path = "/about" element = {<HomeScreen/>}></Route>
               <Route path="/login" element={<Login/>}></Route>
               <Route path="/calendar-view" element={<CalendarView/>}></Route>
               <Route path="/budgets/create" element={<CreateBudget/>}></Route>

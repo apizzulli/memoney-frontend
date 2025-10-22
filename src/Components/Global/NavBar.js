@@ -109,7 +109,7 @@ export default function NavBar(){
     return(
             <div className="main-container" >
                 <div className={loggedIn ? "nav-buttons" : "nav-buttons"} >
-                    <h4 style={{marginLeft: '12px'}}>MEMONEY™</h4>
+                    <h4 onClick={()=>{navigate("/about")}} style={{marginLeft: '12px', cursor:'pointer'}}>MEMONEY™</h4>
                     <Button className="button" onClick={()=>{navigate("/")}} style={{fontFamily:'inherit',color:'inherit'}} variant="text">Home</Button>
                     <Button className="button" onClick={openMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Budgets</Button>
                         <BudgetMenu></BudgetMenu>
