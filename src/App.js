@@ -20,7 +20,7 @@ export const BudgetContext = createContext();
 function App() {
 
   if(process.env.NODE_ENV === 'development') {
-    logger.info("Loading dotenv for development environment")
+    console.log("Loading dotenv for development environment")
     require('dotenv').config();
 }
 
