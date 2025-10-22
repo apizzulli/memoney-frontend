@@ -17,7 +17,7 @@ export async function newUser(userDTO) {
 }
 export async function login (userDTO) {
     let budgets = null;
-    return fetch(process.env.BACKEND_URL + '/user/login',
+    return fetch(process.env.REACT_APP_BACKEND_URL + '/user/login',
     {
         headers: {
         "Accept":"application/json",

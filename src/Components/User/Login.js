@@ -32,6 +32,7 @@ export default function Login() {
         console.log("H");
     }
     async function loginUser (event) {
+        console.log(".env -> " + process.env.REACT_APP_BACKEND_URL);
         event.preventDefault();
         let userId = null;
         const userDTO = {

@@ -18,8 +18,6 @@ import { jwtDecode } from 'jwt-decode';
 export const BudgetContext = createContext();      
 
 function App() {
-  
-  require('dotenv').config()
   const navigate = useNavigate();
   const [ budgets, setBudgets ] = useState([]);
   const [ userId, setUserId ] = useState();
