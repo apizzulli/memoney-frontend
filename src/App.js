@@ -19,11 +19,11 @@ export const BudgetContext = createContext();
 
 function App() {
 
-  if(process.env.NODE_ENV === 'development') {
-    console.log("Loading dotenv for development environment")
+  if(process.env.REACT_APP_ENVIRONMENT != 'local') {
+    console.log("process.env.ENVIRONMENT = " + process.env.ENVIRONMENT + " Loading dotenv for development environment")
     require('dotenv').config();
-}
-
+  }
+  console.log("process.env.NODE_ENV = "+ process.env.NODE_ENV);
   const navigate = useNavigate();
   const [ budgets, setBudgets ] = useState([]);
   const [ userId, setUserId ] = useState();

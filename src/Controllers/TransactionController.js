@@ -32,7 +32,6 @@ export async function getTransactions(budgetId){
         method: "GET"
     })
     .then((response) => {
-        console.log("getTransactions in controller returns status");
         return response.json()
     })
     .catch((error)=> {

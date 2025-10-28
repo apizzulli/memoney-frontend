@@ -29,7 +29,6 @@ export default function Login() {
             })
         }
         budget.remaining = total;
-        console.log("H");
     }
     async function loginUser (event) {
         console.log(".env -> " + process.env.REACT_APP_BACKEND_URL);
