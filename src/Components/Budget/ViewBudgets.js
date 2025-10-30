@@ -74,7 +74,7 @@ export default function ViewBudgets(props){
             categories = Object.keys(budget.categories);
         }
         return(
-            <div className="vertical-flex" style={{backgroundColor:'rgb(146, 159, 178, 0.130)',paddingTop: '3%', paddingBottom: '3%',marginBottom:'4%',width:'100%', borderRadius: '15px',height:'100%'}}>
+            <div id="vertical-flex" className="budget-contents">
                 <div className="horizontal-flex"  >
                     <h2 >
                         {budget.name}
@@ -112,14 +112,14 @@ export default function ViewBudgets(props){
       }, []); 
 
     return (
-        <div className="vertical-flex" style={{height:'100%', width:'100%'}}>
+        <div id="vertical-flex" style={{height:'100%'}} >
             <h1>Your Budgets:</h1>
             {   
                 budgets != undefined ? 
-                <div className="vertical-flex" style={{width:'70%'}}>
+                <div id="vertical-flex" className="budgets-container" >
                     {
                         budgets.map((budget,i) => 
-                            <div key={i} className="vertical-flex" style={{width:'40%'}}>
+                            <div key={i}  className="budget-box"  >
                                 {budgetView(budget)}
                             </div>)
                     }

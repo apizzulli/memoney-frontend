@@ -1,6 +1,5 @@
 .navbar{
     height: 5%;
-    width: 100vw;
     border-bottom-width: .05px;
     border-bottom-color: white;
     border-bottom-style: solid;
@@ -21,7 +20,6 @@
     column-gap: 0.3%;
     height: 90%;
     align-items: center;
-    margin-left: 0.5%;
     color: white;
 }
 .MuiMenu-root ul {
@@ -35,7 +33,6 @@ a{
 .action-buttons{
     display:flex;
     justify-content: center;
-    margin-right: 15px;
     align-items: center;
 }
 @media screen and (max-width: 768px) {

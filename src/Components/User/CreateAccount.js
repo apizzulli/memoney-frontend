@@ -52,7 +52,7 @@ export default function CreateAccount() {
         return s;
     }
     return(
-        <div className="vertical-flex">
+        <div id="vertical-flex">
             <h2>Enter an email and password for your account below</h2>
                 <div style={{width:'15%'}}>
                     <form onSubmit={createAccount}>

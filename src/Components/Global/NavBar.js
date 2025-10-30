@@ -116,7 +116,7 @@ export default function NavBar(){
                     <Button className="button" onClick={openTransMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Transactions</Button>
                         <TransactionMenu></TransactionMenu> 
                 </div>
-                <div className="horizontal-flex" style={{marginRight:'12px'}}>
+                <div className="horizontal-flex" >
                     <ColorSet></ColorSet>
                     <AccountCircleIcon onClick={openProfile} style={{display: loggedIn ? 'flex': 'none'}}></AccountCircleIcon>
                     <ProfileMenu></ProfileMenu>
