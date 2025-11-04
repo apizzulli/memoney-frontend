@@ -1,8 +1,10 @@
 .budgets-container{
     margin-top: 2%;
     width:30%;
-    row-gap: 7%;
+    row-gap: 50px;
     height:60%;
+    display: flex;
+    flex-direction: column;
 }
 /* @media screen and (max-width: 1400px) {
     .budgets-container{
@@ -15,6 +17,7 @@
     .budgets-container{
         width: 50%;
         height:60%;
+        row-gap: 50px;
     }
 }
 
@@ -22,6 +25,7 @@
     .budgets-container{
         width: 60%;
         height:60%;
+        row-gap: 50px;
     }
 }
 .budget-contents{

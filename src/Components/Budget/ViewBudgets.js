@@ -116,7 +116,7 @@ export default function ViewBudgets(props){
             <h1>Your Budgets:</h1>
             {   
                 budgets != undefined ? 
-                <div id="vertical-flex" className="budgets-container" >
+                <div className="budgets-container" >
                     {
                         budgets.map((budget,i) => 
                             <div key={i}  className="budget-box"  >
