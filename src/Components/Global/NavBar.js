@@ -66,10 +66,9 @@ export default function NavBar(){
 
     window.addEventListener('mouseup', function(e) {
         var x = document.querySelector('#navBarMenu');
-        if (e.target != document.querySelector(".menuItem")) {
+        if (e.target != document.querySelector(".menuItem") && (Boolean(anchorEl) || Boolean(anchorEl2) || Boolean(profileAnchor))) {
             closeMenu();
             closeTransMenu();
-            closeHamMenu();
             setProfileAnchor(null);
         }
     });
@@ -108,10 +107,10 @@ export default function NavBar(){
     const BudgetMenu = () => {
         return (
             <>
-                <Menu id="navBarMenu" anchorEl={anchorEl} open={Boolean(anchorEl)}  anchorOrigin={{vertical:'bottom'}}>    
+                <Menu className="menuBack" anchorEl={anchorEl} open={Boolean(anchorEl)}  anchorOrigin={{vertical:'bottom'}}>   
                     <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeMenu} ><Link to="/budgets/view">View Existing Budgets</Link></MenuItem>
                     <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeMenu}><Link to="/budgets/create">Create New Budget</Link></MenuItem>
-                 </Menu>
+                </Menu>
             </>
             );
     }
@@ -144,29 +143,29 @@ export default function NavBar(){
             </div>
         );
     }
-    const SideDrawer = () => {
-        return (
-            <Drawer color="inherit" open={Boolean(hamAnchor)} anchor="left" >
-                <div className="side-menu">
-                    <Button className="button" onClick={()=>{navigate("/")}} style={{fontFamily:'inherit',color:'inherit'}} variant="text">Home</Button>
+    // const SideDrawer = () => {
+    //     return (
+    //         <Drawer color="inherit" open={Boolean(hamAnchor)} anchor="left" >
+    //             <div className="side-menu">
+    //                 <Button className="button" onClick={()=>{navigate("/")}} style={{fontFamily:'inherit',color:'inherit'}} variant="text">Home</Button>
 
-                    <Button className="button" onClick={openMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Budgets</Button>
+    //                 <Button className="button" onClick={openMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Budgets</Button>
                     
-                    <Button className="button"style={{fontFamily:'inherit',color:'inherit', backgroundColor:'inherit'}} onClick={closeMenu} ><Link to="/budgets/view">View Existing</Link></Button>
-                    <Button  className="button" style={{fontFamily:'inherit',color:'inherit', backgroundColor:'inherit'}} onClick={closeMenu}><Link to="/budgets/create">Create New</Link></Button>
+    //                 <Button className="button"style={{fontFamily:'inherit',color:'inherit', backgroundColor:'inherit'}} onClick={closeMenu} ><Link to="/budgets/view">View Existing</Link></Button>
+    //                 <Button  className="button" style={{fontFamily:'inherit',color:'inherit', backgroundColor:'inherit'}} onClick={closeMenu}><Link to="/budgets/create">Create New</Link></Button>
 
-                    <Button className="button" onClick={openTransMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Transactions</Button>
-                        <TransactionMenu></TransactionMenu> 
-                </div>
-            </Drawer>
-        );
-    }
+    //                 <Button className="button" onClick={openTransMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Transactions</Button>
+    //                     <TransactionMenu></TransactionMenu> 
+    //             </div>
+    //         </Drawer>
+    //     );
+    // }
     return(
             <div className="main-container" >
                 <div className="hamburger-menu">
                     <MenuIcon onClick={openHamMenu}></MenuIcon>
                 </div>
-                <SideDrawer></SideDrawer>
+                {/* <SideDrawer></SideDrawer> */}
                 <div className={loggedIn ? "nav-buttons" : "nav-buttons"} >
                     <h4 className="title" onClick={()=>{navigate("/about")}} style={{marginLeft: '12px', cursor:'pointer'}}>MEMONEY™</h4>
                     <Button className="button" onClick={()=>{navigate("/")}} style={{fontFamily:'inherit',color:'inherit'}} variant="text">Home</Button>
