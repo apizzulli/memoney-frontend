@@ -18,6 +18,12 @@ import { jwtDecode } from 'jwt-decode';
 export const BudgetContext = createContext();      
 
 function App() {
+
+  if(process.env.REACT_APP_ENVIRONMENT != 'local') {
+    console.log("process.env.ENVIRONMENT = " + process.env.ENVIRONMENT + " Loading dotenv for development environment")
+    require('dotenv').config();
+  }
+  console.log("process.env.NODE_ENV = "+ process.env.NODE_ENV);
   const navigate = useNavigate();
   const [ budgets, setBudgets ] = useState([]);
   const [ userId, setUserId ] = useState();
@@ -48,6 +54,7 @@ function App() {
             <NavBar></NavBar> 
             <Routes>
               <Route path = "/" element = {<HomeScreen/>}></Route>
+              <Route path = "/about" element = {<HomeScreen/>}></Route>
               <Route path="/login" element={<Login/>}></Route>
               <Route path="/calendar-view" element={<CalendarView/>}></Route>
               <Route path="/budgets/create" element={<CreateBudget/>}></Route>

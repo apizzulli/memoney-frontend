@@ -82,8 +82,8 @@
 //     }
 //     return(
 //         <div style={{width: '100%'}}>
-//             <div className='verticalFlex' style={{height:'100%', width:'70%'}}>
-//                 <div className='horizontalFlex' style={{columnGap:'3%',width:'100%', height:'25%'}}>
+//             <div className='vertical-flex' style={{height:'100%', width:'70%'}}>
+//                 <div className='horizontal-flex' style={{columnGap:'3%',width:'100%', height:'25%'}}>
 //                 {
 //                     remainingVals.map((val, i)=>
 //                         spendCard(val,i)

@@ -1,13 +1,32 @@
-.verticalFlex{
+.vertical-flex{
     display: flex;
     flex-direction:column;
     justify-content:center;
     align-items: center;
 }
-.horizontalFlex{
+#vertical-flex{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+}
+.horizontal-flex{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#horizontal-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#button{
+    font-family: inherit;
+    color:inherit;
+}
+#button{
+    font-family: inherit;
+    color: inherit;
 }
 .button-dark{
     color:'white'

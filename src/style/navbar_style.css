@@ -1,6 +1,5 @@
 .navbar{
     height: 5%;
-    width: 100vw;
     border-bottom-width: .05px;
     border-bottom-color: white;
     border-bottom-style: solid;
@@ -21,7 +20,6 @@
     column-gap: 0.3%;
     height: 90%;
     align-items: center;
-    margin-left: 0.5%;
     color: white;
 }
 .MuiMenu-root ul {
@@ -31,4 +29,61 @@
 a{
     color: white;
     text-decoration: none;
+}
+.action-buttons{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 524px) {
+    /* CSS rules to apply when the screen width is 524px or less */
+    .colorSet{
+        display:none;
+    }
+    .title{
+        display:none;
+        
+    }
+    .nav-buttons{
+        display: flex;
+        align-items: center;
+    }
+    /* .hamburger-menu{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    } */
+    .side-menu{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        background-color: rgb(39, 48, 61);
+        height:100%;
+    }
+}
+@media screen and (min-width: 525px) {
+    /* CSS rules to apply when the screen width is 525px or more */
+    .colorSet{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-right:10%;
+    }
+    .nav-buttons{
+        display: flex;
+        align-items: center;
+    }
+    .title{
+        display: flex;
+    }
+  }
+
+.main-container{
+    width: 100vw;
+    height: 60px;
+    border-bottom: .02rem solid;
+    justify-content: space-between;
+    display: flex;
 }

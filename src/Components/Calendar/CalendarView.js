@@ -54,10 +54,10 @@ export default function CalendarView () {
     });
 
     return(
-        <div className="verticalFlex">
+        <div id="vertical-flex">
             <h2 class="title" style={{marginTop:'1%'}} >Calendar View
             </h2>
-            <div className="horizontalFlex">
+            <div id="horizontal-flex">
                 <h1>{selectedMonth}</h1>
                 <Menu anchorEl={anchorEl} open={open}>   
                     <MenuItem id="menuItem" selected={selectedMonth===MONTHS.JANUARY} onClick={(event)=>handleMonthSelect(event)}>January</MenuItem>

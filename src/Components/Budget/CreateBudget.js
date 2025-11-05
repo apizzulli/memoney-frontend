@@ -85,12 +85,12 @@ export default function CreateBudget(){
     return(
         <div style={{width: '100vw',height:'100vh', display:'flex', flexDirection:'column', alignItems:'center'}}>
             <h1 style={{marginTop:'3%'}}>New Budget</h1>
-            <div className='horizontalFlex' style={{gap:'5%',height:'15%'}}>
+            <div className='horizontal-flex' style={{gap:'5%',height:'15%'}}>
                 <Input id="nameInput" name="budgetName" sx={{width: 200}} placeholder="Budget Name" required></Input>
                 <Input id="totalInput" name="total" sx={{width: 200}} placeholder="Total" required></Input>
             </div>
             <h2 style={{marginBottom:'2%'}}>Categories</h2>
-            <div className='horizontalFlex' style={{columnGap:'3%', height:'20%',width:'80%'}}>
+            <div className='horizontal-flex' style={{columnGap:'3%', height:'20%',width:'80%'}}>
                 {
                     /*/
                         {Object.keys(CATEGORIES).map((name,i)=><MenuItem id="menuItem" onClick={()=>menuClick(CATEGORIES[name])}>

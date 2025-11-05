@@ -1,5 +1,5 @@
 export async function newBudget(userId, newBudg, token) {
-    return fetch(`http://localhost:8080/budgets/create/${userId}`,
+    return fetch(process.env.REACT_APP_BACKEND_URL + `/budgets/create/${userId}`,
     {
         headers: {
         "Authorization": `Bearer ${token}`,
@@ -23,7 +23,7 @@ export async function newBudget(userId, newBudg, token) {
 
 }
 export async function editBudget(editedBudg, budgId) {
-    return fetch(`http://localhost:8080/budgets/edit/${budgId}`,
+    return fetch(process.env.REACT_APP_BACKEND_URL + `/budgets/edit/${budgId}`,
     {
         headers: {
         "Accept":"application/json",
@@ -38,14 +38,14 @@ export async function editBudget(editedBudg, budgId) {
     })
 }
 export function getBudget(id){
-    return fetch(`http://localhost:8080/getBudget/${id}`)
+    return fetch(process.env.REACT_APP_BACKEND_URL + `/getBudget/${id}`)
     .then(response => response.json())
     .then(data => console.log(data));
 }
 
 export async function getAllBudgets(userId){
     let token = localStorage.getItem("jwt");
-    return fetch(`http://localhost:8080/budgets/getAll/${userId}`,
+    return fetch(process.env.REACT_APP_BACKEND_URL + `/budgets/getAll/${userId}`,
     {
         headers: {
             "Access-Control-Allow-Origin" : "*",
@@ -56,7 +56,6 @@ export async function getAllBudgets(userId){
         method: "GET"
     })
     .then((response) => {
-        console.log("getTransactions in controller returns status");
         return response.json()
     })
     .catch((error)=> {

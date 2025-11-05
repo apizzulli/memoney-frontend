@@ -14,7 +14,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import BudgetDetails from '../Budget/BudgetDetails.js';
 /*
  budget == null ?
-                <div style={{width:'100%',display:'verticalFlex'}}>
+                <div style={{width:'100%',display:'vertical-flex'}}>
                     <Menu>
                         {Object.keys(budgetNames).map((budgetName,i)=>
                             <MenuItem key={i} id="menuItem" onClick={()=>{setBudget(budgetNames[budgetName]); localStorage.setItem("selectedBudget",JSON.stringify(budgetNames[budgetName])); navigate("/budgets/view")}}>{budgetNames[budgetName].name}</MenuItem>
@@ -110,19 +110,19 @@ export default function Transactions() {
     }
     function handleMenuClose(){}
     return(
-            <div className="verticalFlex" style={{height:'20%',width:'100%', marginTop:'1%'}}>   
-                <div className="verticalFlex" style={{width:'70vw'}}>
+            <div id="vertical-flex" style={{height:'20%',width:'100%', marginTop:'1%'}}>   
+                <div id="vertical-flex" style={{width:'70vw'}}>
                     <h1 style={{marginTop:'0'}}>New Transaction</h1>
                     <h2>{budget.name}</h2>
 
                     {/*------DATE & AMOUNT------*/}
-                    <div className='verticalFlex'style={{justifyContent:'space-between'}}>
-                        <div className='horizontalFlex' style={{height:'15%',width:'100%',justifyContent:'space-between'}}>
+                    <div id='vertical-flex'style={{justifyContent:'space-between'}}>
+                        <div id='horizontal-flex' style={{height:'15%',width:'100%',justifyContent:'space-between'}}>
                             <h3>Amount:</h3>
                             <input id="amountInput" style={{textAlign:'right'}} className="input" type="number" placeholder="Enter Dollar Amount" required ></input>
                         </div>
                         <div style={{visibility: amountError ? 'visible': 'hidden',color:'red',marginTop:'1%',marginBottom:'1%', width:'100%'}}>Amount field is required.</div>
-                        <div className='horizontalFlex' style={{height:'15%',width:'100%',justifyContent:'space-between'}}>
+                        <div className='horizontal-flex' style={{height:'15%',width:'100%',justifyContent:'space-between'}}>
                             <h3 >Date:</h3>
                             <input required id="dateInput" style={{textAlign:'center'}} className="input" type="date" helperText="Date field is required." error={dateError}></input>
                         </div>
@@ -130,7 +130,7 @@ export default function Transactions() {
                     </div>
                     {/*------CATEGORIES------*/}  
                     <h3 >Category:</h3>
-                    <div className='horizontalFlex' style={{alignItems:'center',columnGap:'5%', width:'100%'}}>
+                    <div className='horizontal-flex' style={{alignItems:'center',columnGap:'5%', width:'100%'}}>
                     {
                         // catSelect != null ? 
                         //     <CatCard  selected={selected} width={'10%'} initialAmount={0} allowInput={false}category={selectedCat}></CatCard>

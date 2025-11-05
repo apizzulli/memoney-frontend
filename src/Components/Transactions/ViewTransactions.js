@@ -87,7 +87,7 @@ export default function ViewTransactions() {
         <div>
             <div onClick={view} style={{display:'flex', flexDirection:'column', alignItems:'center',width:'100%', height:'100%',rowGap:'5%'}}>
                 <h1>{selectedBudget.name}</h1>
-                <div className="horizontalFlex" style={{height:'5%',alignItems:'center', justifyContent:'center',width:'60%'}}>
+                <div className="horizontal-flex" style={{height:'5%',alignItems:'center', justifyContent:'center',width:'60%'}}>
                     <div className="tooltip" style={{borderWidth:'.02px',border:'solid',borderRight:'none',backgroundColor:'red',width:`${selectedBudget.spent}%`}}>
                         <span className='tooltiptext'>{Math.round((selectedBudget.spent)/selectedBudget.total*100)}% Spent</span>
                     </div>
@@ -98,8 +98,8 @@ export default function ViewTransactions() {
                 </div>
                 <h3 style={{marginTop:'1%'}}>{USDollar.format(selectedBudget.total-selectedBudget.spent)} Remaining</h3>
                 {
-                    selectedBudget.transactions != undefined && selectedBudget.transactions.length > 0 ? 
-                        <div className='verticalFlex' style={{height:'30%', width:'100%'}}>
+                    selectedBudget.transactions != undefined && selectedBudget.transactions != null && selectedBudget.transactions.length > 0 ? 
+                        <div className='vertical-flex' style={{height:'30%', width:'100%'}}>
                             <h2>Transactions:</h2>  
                             <div  className="tx-table" style={{height:'100%',width:'30%'}}>
                                 <div className="tx-row tx-row--head" style={{marginBottom:'3%'}}>
@@ -111,7 +111,7 @@ export default function ViewTransactions() {
                                 </div>
                             
                                 {selectedBudget.transactions.sort((a, b) => new Date(a.date) - new Date(b.date)).map((trans) => 
-                                // <div className='horizontalFlex' style={{width:'100%'}} >    
+                                // <div className='horizontal-flex' style={{width:'100%'}} >    
                                     <div  className="tx-row" >
                                             <div >{dateStr(trans.date)}</div>
                                             <div >{pickIcon(trans.category)}</div>
@@ -134,9 +134,9 @@ export default function ViewTransactions() {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description">
                         <div style={{top:'50%',left:'50%',transform: 'translate(-50%, -50%)',position:'absolute',backgroundColor:'rgb(39, 48, 61)',color:'white',height:'15%', width:'15%',borderRadius: '15px'}}>
-                            <div className='verticalFlex' style={{fontSize:'xxl',height:'100%', width:'100%', marginLeft:'auto',marginRight:'auto',color:'white'}}>
+                            <div className='vertical-flex' style={{fontSize:'xxl',height:'100%', width:'100%', marginLeft:'auto',marginRight:'auto',color:'white'}}>
                                 <span style={{textAlign:'center'}}>Are you sure you want to delete this transaction?</span>
-                                <div className='horizontalFlex' style={{marginTop:'5%',columnGap:'10%', color:'white'}}>
+                                <div className='horizontal-flex' style={{marginTop:'5%',columnGap:'10%', color:'white'}}>
                                     <Button onClick={deleteT} variant='outlined' className='button' style={{color:'inherit'}}>Yes</Button>
                                     <Button onClick={()=>setOpen(false)} variant='outlined' className='button' style={{color:'inherit'}}>No</Button>
                                 </div>

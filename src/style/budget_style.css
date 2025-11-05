@@ -1,3 +1,42 @@
+.budgets-container{
+    margin-top: 2%;
+    width:30%;
+    row-gap: 50px;
+    height:60%;
+    display: flex;
+    flex-direction: column;
+}
+/* @media screen and (max-width: 1400px) {
+    .budgets-container{
+        width: 30%;
+        height:60%;
+    }
+} */
+
+@media screen and (max-width: 960px) {
+    .budgets-container{
+        width: 50%;
+        height:60%;
+        row-gap: 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .budgets-container{
+        width: 60%;
+        height:60%;
+        row-gap: 50px;
+    }
+}
+.budget-contents{
+    padding: 5%;
+}
+.budget-box{
+    background-color: rgb(146, 159, 178, 0.130);
+    width: 100%;
+    border-radius: 15px;
+    height: 20%;
+}
 .form-container{
     height: 25%;
     width: 100%;

@@ -2,7 +2,7 @@
 export async function createTransaction (budgetId, transaction) {
     let token = localStorage.getItem("jwt");
     console.log("adding transaction");
-    return fetch(`http://localhost:8080/transactions/add/${budgetId}`,
+    return fetch(process.env.REACT_APP_BACKEND_URL + `/transactions/add/${budgetId}`,
     {
         headers: {
             "Access-Control-Allow-Origin" : "*",
@@ -21,7 +21,7 @@ export async function createTransaction (budgetId, transaction) {
 }
 export async function getTransactions(budgetId){
     let token = localStorage.getItem("jwt");
-    return fetch(`http://localhost:8080/transactions/get/${budgetId}`,
+    return fetch(process.env.REACT_APP_BACKEND_URL + `/transactions/get/${budgetId}`,
     {
         headers: {
             "Access-Control-Allow-Origin" : "*",
@@ -32,7 +32,6 @@ export async function getTransactions(budgetId){
         method: "GET"
     })
     .then((response) => {
-        console.log("getTransactions in controller returns status");
         return response.json()
     })
     .catch((error)=> {
@@ -44,7 +43,7 @@ export async function getTransactions(budgetId){
 export async function deleteTransaction(transId, budgId){
     let id = transId + "-" + budgId;
     let token = localStorage.getItem("jwt");
-    return fetch(`http://localhost:8080/transactions/delete/${id}`,
+    return fetch(process.env.REACT_APP_BACKEND_URL + `/transactions/delete/${id}`,
     {
         headers: {
             "Access-Control-Allow-Origin" : "*",
