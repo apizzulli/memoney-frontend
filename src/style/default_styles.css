@@ -20,6 +20,14 @@
     align-items: center;
     justify-content: center;
 }
+#button{
+    font-family: inherit;
+    color:inherit;
+}
+#button{
+    font-family: inherit;
+    color: inherit;
+}
 .button-dark{
     color:'white'
 }

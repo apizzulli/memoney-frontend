@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { BudgetContext } from '../App.js';
 import Login from '../Components/User/Login';
 import { jwtDecode } from 'jwt-decode';
+import '../style/home_style.css';
 
 export default function HomeScreen() {
 
@@ -25,8 +26,8 @@ export default function HomeScreen() {
     //     }
     //   }, []); 
     return(
-        <div className='vertical-flex' style={{marginTop:'2%', width:'100%',height:'100%'}}>
-            <h1 style={{margin: 0}}>Welcome to Budgeter</h1>
+        <div id='vertical-flex' style={{marginTop:'2%', width:'100%',height:'100%'}}>
+            <h1 className="header" >Welcome to Budgeter</h1>
             { 
                 !loggedIn ? 
                 (
@@ -35,10 +36,10 @@ export default function HomeScreen() {
                     </div>
                 )
                 :
-                (<div className='vertical-flex' style={{backgroundColor:'iherit',marginTop:'2%', height:'100%'}}>
-                    <Button className="button" onClick={()=>{navigate("/budgets/view")}} size='lg' variant='outlined' style={{fontFamily:'inherit',color:'inherit', marginBottom:'7%'}}>View Budgets</Button>
-                    <Button className="button" onClick={()=>{navigate("/budgets/create")}} size='lg' variant='outlined'style={{fontFamily:'inherit',color:'inherit', marginBottom:'7%'}}>Create New Budget</Button>
-                    <Button className="button" onClick={()=>{navigate("/transactions/add")}} size='lg' variant='outlined'style={{fontFamily:'inherit',color:'inherit'}}>Log a transaction</Button>
+                (<div id='vertical-flex' >
+                    <Button id="button" style={{marginBottom:'7%'}} onClick={()=>{navigate("/budgets/view")}} size='lg' variant='outlined' >View Budgets</Button>
+                    <Button id="button" style={{marginBottom:'7%'}} onClick={()=>{navigate("/budgets/create")}} size='lg' variant='outlined'>Create New Budget</Button>
+                    <Button id="button" onClick={()=>{navigate("/transactions/add")}} size='lg' variant='outlined'>Log a transaction</Button>
                 </div>)
             }
             <br></br>
