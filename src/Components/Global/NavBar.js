@@ -170,9 +170,15 @@ export default function NavBar(){
                     <h4 className="title" onClick={()=>{navigate("/about")}} style={{marginLeft: '12px', cursor:'pointer'}}>MEMONEY™</h4>
                     <Button className="button" onClick={()=>{navigate("/")}} style={{fontFamily:'inherit',color:'inherit'}} variant="text">Home</Button>
                     <Button className="button" onClick={openMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Budgets</Button>
-                        <BudgetMenu></BudgetMenu>
+                    <Menu className="menuBack" anchorEl={anchorEl} open={Boolean(anchorEl)}  anchorOrigin={{vertical:'bottom'}}>   
+                        <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeMenu} ><Link to="/budgets/view">View Existing Budgets</Link></MenuItem>
+                        <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeMenu}><Link to="/budgets/create">Create New Budget</Link></MenuItem>
+                    </Menu>
                     <Button className="button" onClick={openTransMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Transactions</Button>
-                        <TransactionMenu></TransactionMenu> 
+                    <Menu id="navBarMenu" anchorEl={anchorEl2} open={Boolean(anchorEl2)}  anchorOrigin={{vertical:'bottom'}}>   
+                        {/* <MenuItem className="button" style={{fontFamily:'inherit'}} onClick={closeTransMenu} ><Link  to="/transactions">View Existing Transactions</Link></MenuItem> */}
+                        <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeTransMenu}><Link  to="/transactions/add">Create New Transaction</Link></MenuItem>
+                    </Menu>
                 </div>
                 <div className="horizontal-flex" >
                     <ColorSet></ColorSet>

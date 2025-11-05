@@ -98,7 +98,7 @@ export default function ViewTransactions() {
                 </div>
                 <h3 style={{marginTop:'1%'}}>{USDollar.format(selectedBudget.total-selectedBudget.spent)} Remaining</h3>
                 {
-                    selectedBudget.transactions != undefined && selectedBudget.transactions.length > 0 ? 
+                    selectedBudget.transactions != undefined && selectedBudget.transactions != null && selectedBudget.transactions.length > 0 ? 
                         <div className='vertical-flex' style={{height:'30%', width:'100%'}}>
                             <h2>Transactions:</h2>  
                             <div  className="tx-table" style={{height:'100%',width:'30%'}}>
