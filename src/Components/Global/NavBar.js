@@ -162,9 +162,9 @@ export default function NavBar(){
     // }
     return(
             <div className="main-container" >
-                <div className="hamburger-menu">
+                {/* <div className="hamburger-menu">
                     <MenuIcon onClick={openHamMenu}></MenuIcon>
-                </div>
+                </div> */}
                 {/* <SideDrawer></SideDrawer> */}
                 <div className={loggedIn ? "nav-buttons" : "nav-buttons"} >
                     <h4 className="title" onClick={()=>{navigate("/about")}} style={{marginLeft: '12px', cursor:'pointer'}}>MEMONEY™</h4>

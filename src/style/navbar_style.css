@@ -45,13 +45,14 @@ a{
         
     }
     .nav-buttons{
-        display:none;
+        display: flex;
+        align-items: center;
     }
-    .hamburger-menu{
+    /* .hamburger-menu{
         display: flex;
         flex-direction: row;
         align-items: center;
-    }
+    } */
     .side-menu{
         display: flex;
         flex-direction: column;
@@ -74,8 +75,8 @@ a{
         display: flex;
         align-items: center;
     }
-    .hamburger-menu{
-        display: none;
+    .title{
+        display: flex;
     }
   }
 
