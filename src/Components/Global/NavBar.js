@@ -183,7 +183,9 @@ export default function NavBar(){
                 <div className="horizontal-flex" >
                     <ColorSet></ColorSet>
                     <AccountCircleIcon onClick={openProfile} style={{display: loggedIn ? 'flex': 'none'}}></AccountCircleIcon>
-                    <ProfileMenu></ProfileMenu>
+                    <Menu id="profileMenu" anchorEl={profileAnchor} open={Boolean(profileAnchor)}  anchorOrigin={{vertical:'bottom'}}>   
+                    <MenuItem className="menuItem" onClick={logout} >Logout</MenuItem>
+                    </Menu>
                 </div>
             </div>
     );

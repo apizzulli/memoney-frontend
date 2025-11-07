@@ -87,13 +87,13 @@ export default function ViewTransactions() {
         <div>
             <div onClick={view} style={{display:'flex', flexDirection:'column', alignItems:'center',width:'100%', height:'100%',rowGap:'5%'}}>
                 <h1>{selectedBudget.name}</h1>
-                <div className="horizontal-flex" style={{height:'5%',alignItems:'center', justifyContent:'center',width:'60%'}}>
-                    <div className="tooltip" style={{borderWidth:'.02px',border:'solid',borderRight:'none',backgroundColor:'red',width:`${selectedBudget.spent}%`}}>
-                        <span className='tooltiptext'>{Math.round((selectedBudget.spent)/selectedBudget.total*100)}% Spent</span>
+                <div id="horizontal-flex" style={{height:'25px',alignItems:'center', justifyContent:'center',width:'60%'}}>
+                    <div className="tooltip" style={{height:'100%',borderWidth:'.02px',border:'solid',borderRight:'none',backgroundColor:'red',width:`${(selectedBudget.spent/selectedBudget.total)*100}%`}}>
+                        <span style={{height:'100%'}}className='tooltiptext'>{Math.round((selectedBudget.spent)/selectedBudget.total*100)}% Spent</span>
                     </div>
                     {/* {style={{borderWidth:'.02px',border:'solid',borderLeft:'none',backgroundColor:'green',width:`${remaining}%`}}} */}
-                    <div className='tooltip' style={{borderWidth:'.02px',border:'solid',backgroundColor:'green',width:`${selectedBudget.total-selectedBudget.spent > 0 ? selectedBudget.total-selectedBudget.spent : 0}%`}}>
-                        <span  className='tooltiptext'>{Math.round((selectedBudget.total-selectedBudget.spent)/selectedBudget.total*100)}% Remaining</span>
+                    <div className="tooltip" style={{height:'100%',borderWidth:'.02px',border:'solid',backgroundColor:'green',width:`${selectedBudget.total-selectedBudget.spent > 0 ? ((selectedBudget.total-selectedBudget.spent)/selectedBudget.total)*100 : 0}%`}}>
+                        <span  style={{height:'100%'}}className='tooltiptext'>{Math.round((selectedBudget.total-selectedBudget.spent)/selectedBudget.total*100)}% Remaining</span>
                     </div>
                 </div>
                 <h3 style={{marginTop:'1%'}}>{USDollar.format(selectedBudget.total-selectedBudget.spent)} Remaining</h3>
