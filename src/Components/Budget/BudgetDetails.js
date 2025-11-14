@@ -6,7 +6,7 @@ export default function BudgetDetails({budget}) {
     
     const navigate = useNavigate();
     const location = useLocation();
-    let categories = JSON.parse(localStorage.getItem("selectedBudget")).categories;
+    // let categories = JSON.parse(localStorage.getItem("selectedBudget")).categories;
 
     function cats(){
         console.log("hi");

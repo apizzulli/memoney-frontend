@@ -3,10 +3,17 @@ import Input from '@mui/joy/Input';
 import '../../style/default_styles.css';
 import {newUser, email } from '../../Controllers/UserController.js';
 import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { BudgetContext } from '../../App.js';
 
 export default function CreateAccount() {
     const navigate = useNavigate();
+    const [ errorMessage, setErrorMessage ] = useState("");
+    const { userId, setUserId } = useContext(BudgetContext);
+    const { loggedIn, setLoggedIn } = useContext(BudgetContext);
+
+    const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
     useEffect(() => {
         let current = document.getElementById("user").value;
@@ -36,12 +43,33 @@ export default function CreateAccount() {
             username: event.currentTarget.user.value,
             password: event.currentTarget.password.value
         };
-        const response = await newUser(userDTO);
-        if(!response){
-            
+        if(userDTO.username == ""){
+            setErrorMessage("Email is required.");
+            await sleep(3000);
+            setErrorMessage("");
+            return;
         }
-        localStorage.setItem("jwt",response.token.value);
-        localStorage.setItem("userId",response.user.id);
+        if(userDTO.password == ""){
+            setErrorMessage("Password is required.");
+            await sleep(3000);
+            setErrorMessage("");
+            return;
+        }
+        const response = await newUser(userDTO);
+        if(response.status == "304"){
+            setErrorMessage("A user already exists with the given email. Navigate to the login page." );
+            await sleep(3000);
+            setErrorMessage("");
+            return;
+        }
+        else if(response.status != '201'){
+            setErrorMessage("Server error");
+            await sleep(3000);
+            setErrorMessage("");
+            return;
+        }
+        setUserId(response.user.id);
+        setLoggedIn(true);
         navigate("/budgets/create");
         // .then(response => response.json())
         // .then(data => console.log(data))
@@ -52,16 +80,16 @@ export default function CreateAccount() {
         return s;
     }
     return(
-        <div id="vertical-flex">
+        <div id="vertical-flex" style={{rowGap:'5%'}}>
             <h2>Enter an email and password for your account below</h2>
-                <div style={{width:'15%'}}>
-                    <form onSubmit={createAccount}>
-                        <Input id="user" name="user" placeholder="Email" required></Input>
-                        <Input id="password" type="password" name="password" style={{marginTop:'7%'}} placeholder="Password" required></Input>
-                        <Button className="button" type = "submit" variant="outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'10%'}}>Create Account</Button>
+                <div id="vertical-flex" style={{width:'100%'}}>
+                    <form style={{width:'15%'}} onSubmit={createAccount}>
+                        <Input id="user" name="user" placeholder="Email"></Input>
+                        <Input id="password" type="password" placeholder="Password" name="password" style={{marginTop:'7%'}}></Input>
+                        <Button className="button" type = "submit" variant="outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'12%'}}>Create Account</Button>
                     </form>
+                <span style={{color:'red', display: errorMessage != "" ? 'flex' : 'none', marginTop:'1%',marginBottom:'1%'}}>{errorMessage}</span>
                 </div>
-                <button onClick={emailSend}>Test email</button>
         </div>
     )
 }

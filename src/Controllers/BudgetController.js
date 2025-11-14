@@ -23,13 +23,15 @@ export async function newBudget(userId, newBudg, token) {
 
 }
 export async function editBudget(editedBudg, budgId) {
+    let token = localStorage.getItem("jwt");
     return fetch(process.env.REACT_APP_BACKEND_URL + `/budgets/edit/${budgId}`,
     {
         headers: {
+        "Authorization": `Bearer ${token}`,
         "Accept":"application/json",
         "Content-Type":"application/json",
     },
-        method: "POST",
+        method: "PATCH",
         body: JSON.stringify(editedBudg)
     }).then((response)=> {
         return response.json();

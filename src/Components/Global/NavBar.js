@@ -81,6 +81,7 @@ export default function NavBar(){
     });
 
     function logout() {
+        console.log("LOGGING OUT");
         setProfileAnchor(null);
         setLoggedIn(false);
         localStorage.clear();
@@ -166,15 +167,15 @@ export default function NavBar(){
                     <MenuIcon onClick={openHamMenu}></MenuIcon>
                 </div> */}
                 {/* <SideDrawer></SideDrawer> */}
-                <div className={loggedIn ? "nav-buttons" : "nav-buttons"} >
+                <div className="nav-buttons" >
                     <h4 className="title" onClick={()=>{navigate("/about")}} style={{marginLeft: '12px', cursor:'pointer'}}>MEMONEY™</h4>
-                    <Button className="button" onClick={()=>{navigate("/")}} style={{fontFamily:'inherit',color:'inherit'}} variant="text">Home</Button>
-                    <Button className="button" onClick={openMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Budgets</Button>
+                    <Button className="button" onClick={()=>{navigate("/")}} style={{fontFamily:'inherit',color:'inherit', visibility: loggedIn ? 'visible': 'hidden'}} variant="text">Home</Button>
+                    <Button className="button" onClick={openMenu} style={{fontFamily:'inherit',color:'inherit',visibility: loggedIn ? 'visible': 'hidden'}}  variant="text" >Budgets</Button>
                     <Menu className="menuBack" anchorEl={anchorEl} open={Boolean(anchorEl)}  anchorOrigin={{vertical:'bottom'}}>   
                         <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeMenu} ><Link to="/budgets/view">View Existing Budgets</Link></MenuItem>
                         <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeMenu}><Link to="/budgets/create">Create New Budget</Link></MenuItem>
                     </Menu>
-                    <Button className="button" onClick={openTransMenu} style={{fontFamily:'inherit',color:'inherit'}}  variant="text" >Transactions</Button>
+                    <Button className="button" onClick={openTransMenu} style={{fontFamily:'inherit',color:'inherit', visibility: loggedIn ? 'visible': 'hidden'}}  variant="text" >Transactions</Button>
                     <Menu id="navBarMenu" anchorEl={anchorEl2} open={Boolean(anchorEl2)}  anchorOrigin={{vertical:'bottom'}}>   
                         {/* <MenuItem className="button" style={{fontFamily:'inherit'}} onClick={closeTransMenu} ><Link  to="/transactions">View Existing Transactions</Link></MenuItem> */}
                         <MenuItem className="menuItem" style={{fontFamily:'inherit'}} onClick={closeTransMenu}><Link  to="/transactions/add">Create New Transaction</Link></MenuItem>

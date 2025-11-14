@@ -8,11 +8,21 @@ export async function newUser(userDTO) {
             method: "POST",
             body: JSON.stringify(userDTO)
         }).then((response)=> {
-            if(response.status == "201"){
+            if(response.ok){
                 return response.json();
             }
-            else
-                return 0;
+            else{
+                return response;
+            }
+            // if(response.status == "201"){
+            //     return response.json();
+            // }
+            // else if(response.status == "304"){
+            //     return "304";
+            // }
+            // else{
+            //     return 0;
+            // }
         })
 }
 export async function login (userDTO) {

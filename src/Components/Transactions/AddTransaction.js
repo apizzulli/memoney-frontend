@@ -112,8 +112,8 @@ export default function Transactions() {
     return(
             <div id="vertical-flex" style={{height:'20%',width:'100%', marginTop:'1%'}}>   
                 <div id="vertical-flex" style={{width:'70vw'}}>
-                    <h1 style={{marginTop:'0'}}>New Transaction</h1>
-                    <h2>{budget.name}</h2>
+                    <h1 style={{marginTop:'3%'}}>New Transaction</h1>
+                    <h2>{localStorage.getItem("selectedBudget") ? localStorage.getItem("selectedBudget").name : "-"}</h2>
 
                     {/*------DATE & AMOUNT------*/}
                     <div id='vertical-flex'style={{justifyContent:'space-between'}}>

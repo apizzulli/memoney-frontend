@@ -70,7 +70,7 @@ export default function ViewBudgets(props){
 
     const budgetView = (budget) => {
         let categories = null;
-        if(budget.categories != undefined){
+        if(budget && budget.categories != undefined && budget.categories!= null){
             categories = Object.keys(budget.categories);
         }
         return(
