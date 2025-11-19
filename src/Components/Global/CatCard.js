@@ -9,6 +9,7 @@ import { useContext, useState, useEffect } from 'react';
 import Input from '@mui/joy/Input';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Button from '@mui/joy/Button';
+import './../../style/components.css';
 
 export const percent = new Intl.NumberFormat('default', {
     style: 'percent'
@@ -19,19 +20,19 @@ export const pickIcon = (category) => {
     switch(category){
         case "Groceries":
         case "Grocery":
-            icon = <ShoppingCartIcon  style={{color:'white',fontSize:'40pt'}}></ShoppingCartIcon>;    
+            icon = <ShoppingCartIcon  className="icon" ></ShoppingCartIcon>;    
             break;
         case "Internet":
-            icon = <WifiIcon  style={{color:'white',fontSize:'40pt'}}></WifiIcon>;
+            icon = <WifiIcon className="icon" ></WifiIcon>;
             break;
         case "Savings":
-            icon = <SavingsIcon  style={{color:'white',fontSize:'40pt'}}></SavingsIcon>;
+            icon = <SavingsIcon className="icon" ></SavingsIcon>;
             break;
         case "Phone":
-            icon = <LocalPhoneIcon  style={{color:'white',fontSize:'40pt'}}></LocalPhoneIcon>;
+            icon = <LocalPhoneIcon className="icon"></LocalPhoneIcon>;
             break;
         case "Discretionary":
-            icon = <LocalAtmIcon  style={{color:'white',fontSize:'40pt'}}></LocalAtmIcon>;
+            icon = <LocalAtmIcon className="icon" ></LocalAtmIcon>;
             break;
         default:
             break;
@@ -82,7 +83,7 @@ export default function CatCard({category, initialAmount, allowInput, width, hei
     }
     return(
         <div id={category} style={{justifyContent:'center',alignItems:'center',display:'flex',flexDirection:'column', alignItems:'center',width:"15%",height:'100%'}} className="tooltip">
-            <Button className="button" onClick={handleClick} variant="outlined" style={{paddingTop:'4%',marginBottom:'2%',backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit',height:'100%',width:'100%',color:'white',alignItems:'center',alignContent:'center',justifyContent:'center',flexDirection:'column',display:'flex'}}>
+            <Button className="cat-button" onClick={handleClick} variant="outlined" style={{backgroundColor: isSelected ? 'rgb(80, 99, 125)' : 'inherit'}}>
                 {icon}
                 {
                     allowInput ? 

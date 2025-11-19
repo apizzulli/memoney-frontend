@@ -74,10 +74,53 @@
     color: inherit;
     font: inherit;
 }
-input::-webkit-inner-spin-button {
+input{  
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    
+    margin-top: 0%;
+    margin-bottom: 0%;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    color: inherit;
+    font: inherit;
+}
+input:is(:-webkit-autofill, :autofill) {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    
+    margin-top: 0%;
+    margin-bottom: 0%;
+    border: none;
+    outline: none;
+    color: white;
+    font: inherit;
+    -webkit-box-shadow: 0 0 0px 1000px rgb(39, 48, 61) inset; /* Overrides default background */
+    /* background-color: transparent; Ensures transparency if desired */
+    -webkit-text-fill-color: white; 
+}
+input[type=password] { 
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+input[type=text] { 
+    appearance: none; 
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+/* input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-  }
-input[type=number] {
+  } */
+/* input[type=number] {
     -moz-appearance: textfield;
-}
+} */

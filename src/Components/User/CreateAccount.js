@@ -38,13 +38,19 @@ export default function CreateAccount() {
 
     async function createAccount(event){
         event.preventDefault();
-        
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const userDTO = {
             username: event.currentTarget.user.value,
             password: event.currentTarget.password.value
         };
         if(userDTO.username == ""){
             setErrorMessage("Email is required.");
+            await sleep(3000);
+            setErrorMessage("");
+            return;
+        }
+        else if(!emailRegex.test(userDTO.username)){
+            setErrorMessage("Please input a valid email.");
             await sleep(3000);
             setErrorMessage("");
             return;
@@ -82,13 +88,19 @@ export default function CreateAccount() {
     return(
         <div id="vertical-flex" style={{rowGap:'5%'}}>
             <h2>Enter an email and password for your account below</h2>
-                <div id="vertical-flex" style={{width:'100%'}}>
-                    <form style={{width:'15%'}} onSubmit={createAccount}>
-                        <Input id="user" name="user" placeholder="Email"></Input>
-                        <Input id="password" type="password" placeholder="Password" name="password" style={{marginTop:'7%'}}></Input>
-                        <Button className="button" type = "submit" variant="outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'12%'}}>Create Account</Button>
+                <div id="vertical-flex" style={{width:'15%'}}>
+                    <form id="vertical-flex" style={{width:'100%',columnGap:'2%'}} onSubmit={createAccount}>
+                        <div id='horizontal-flex' style={{height:'15%',width:'100%',justifyContent:'space-between'}}>
+                            <h3>Email:</h3>
+                            <input id="user" autocomplete="off" style={{textAlign:'right'}} className="input"  placeholder="Email" type="text"required ></input>
+                        </div>
+                        <div id='horizontal-flex' style={{height:'20%',width:'100%',justifyContent:'space-between'}}>
+                            <h3>Password:</h3>
+                            <input autocomplete="new-password"id="password" style={{height:'100%',textAlign:'right'}} className="input" type="password"placeholder="Password" required ></input>
+                        </div>
+                        <Button className="button" type = "submit" variant="outlined" style={{fontFamily:'inherit',color:'inherit', marginTop:'8%'}}>Create Account</Button>
                     </form>
-                <span style={{color:'red', display: errorMessage != "" ? 'flex' : 'none', marginTop:'1%',marginBottom:'1%'}}>{errorMessage}</span>
+                <span style={{color:'red', display: errorMessage != "" ? 'flex' : 'none', marginTop:'4%',marginBottom:'1%'}}>{errorMessage}</span>
                 </div>
         </div>
     )

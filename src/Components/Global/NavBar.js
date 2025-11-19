@@ -185,7 +185,7 @@ export default function NavBar(){
                     <ColorSet></ColorSet>
                     <AccountCircleIcon onClick={openProfile} style={{display: loggedIn ? 'flex': 'none'}}></AccountCircleIcon>
                     <Menu id="profileMenu" anchorEl={profileAnchor} open={Boolean(profileAnchor)}  anchorOrigin={{vertical:'bottom'}}>   
-                    <MenuItem className="menuItem" onClick={logout} >Logout</MenuItem>
+                    <MenuItem className="menuItem" style={{font:'inherit'}} onClick={logout} >Logout</MenuItem>
                     </Menu>
                 </div>
             </div>
